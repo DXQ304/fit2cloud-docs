@@ -145,48 +145,61 @@ DeepSeek 账号的配置方式如下图所示。
 
 **步骤2 配置样例**
 
-腾讯云-文生图模型的配置方式如下图所示。
+腾讯云-文生图模型的配置方式如下图所示。腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image11_tencent_cloud_text_to_image_model_configuration_example.png" alt="腾讯云 - 文生图模型配置样例"/>
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 11  腾讯云 - 文生图模型配置样例</div>
 
-腾讯云-向量模型的配置方式如下图所示。
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image12_tencent_cloud_embedding_model_configuration_example.png" alt="腾讯云 - 向量模型配置样例"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  腾讯云 - 向量模型配置样例</div>
-
 ### 3.3 对接阿里云百炼
 
 **步骤1 添加账号**
 
-- 供应商：选择 `阿里云百炼`。
-- 账号类型： `Coding Plan`/`Token Plan` / `按量付费`。
-- 协议类型： `文本`/`文生图` /`向量`。
-- 名称：设置账号显示名称，如 `阿里云百炼`。
-- API Key：填写阿里云百炼平台创建的访问密钥。
-- 支持协议：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
-- 模型映射：如 `qwen3.7-plus → qwen3.7-plus`。
-- 测试模型：选择一个模型用于保存时验证，如 `qwen3.7-plus`。
+添加阿里云百炼账号前，需先在阿里云百炼开通相应服务并创建访问密钥。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image13_obtain_aliyun_api_key.png" alt="获取阿里云 API Key"/>
+随后在账号池点击「**添加账号**」，按以下方式配置：
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13  获取阿里云 API Key</div>
+- **供应商**：选择 `阿里云百炼`。
+- **账号类型**： Coding Plan / Token Plan / 按量付费。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `阿里云百炼`。
+- **API Key**：填写阿里云百炼平台创建的访问密钥。
+- **支持协议**：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：如 `qwen3.7-plus → qwen3.7-plus`。
+- **测试模型**：选择一个模型用于保存时验证，如 `qwen3.7-plus`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image12_obtain_aliyun_api_key.png" alt="获取阿里云 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  获取阿里云 API Key</div>
 
 **步骤2 配置样例**
 
-阿里云百炼-文生图模型的配置方式如下图所示。
+阿里云百炼-文生图模型的配置方式如下图所示。腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image14_aliyun_text_to_image_model_configuration_example.png" alt="阿里云 - 文生图模型配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image13_aliyun_text_to_image_model_configuration_example.png" alt="阿里云 - 文生图模型配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14 阿里云 - 文生图模型配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13 阿里云 - 文生图模型配置样例</div>
 
-阿里云百炼-向量模型的配置方式如下图所示。
+### 3.4 对接本地 vLLM
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image15_aliyun_embedding_model_configuration_example.png" alt="阿里云 - 向量模型配置样例"/>
+**步骤1 添加账号**
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 15 阿里云 - 向量模型配置样例</div>
+- **供应商**：选择 `VLLM`。
+- **协议类型**：文本 / 文生图 / 向量 。
+- **名称**：设置账号显示名称，如 `本地-vllm`。
+- **服务地址**：填写本地 vLLM 服务的访问地址，如 `http://192.168.20.242:8000/v1`。
+- **API Key**：若本地服务未启用鉴权，无 API Key 则输入任意字符即可。
+- **支持协议**：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：可点击 **发现模型** 拉取本地已加载的模型列表快速补全。
+- **测试模型**：选择一个模型用于保存时验证。
+
+**步骤2 配置样例**
+
+本地 vLLM 文本模型配置方式如下图所示。向量模型、文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image14_local_vllm_configuration_example.png" alt="本地 vLLM 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14 本地 vLLM 配置样例</div>
 
 ## 4 注意事项
 
