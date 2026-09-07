@@ -58,7 +58,7 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 点击配置自定义模型：在客户端设置中找到「自定义模型」或「添加模型」入口。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型"/>
+<img style={{display:"block", margin:"16px auto", maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型" />
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 4  配置自定义模型</div>
 
