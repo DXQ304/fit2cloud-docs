@@ -10,7 +10,7 @@ title: 离线升级
 
 :::tip
 
-按照本文档 [**离线安装**](../installation/offline_installtion) 步骤，下载新版本安装包并上传解压后，重新执行安装命令进行升级。
+按照本文档 [**离线安装**](./offline_installtion) 步骤，下载新版本安装包并上传解压后，重新执行安装命令进行升级。
 
 ```sh
 # 进入项目目录
@@ -23,6 +23,6 @@ cd sqlbot-release-v1.x.y-offline
 sctl status
 ```
 
-**注意：升级前请先做好备份，可参考 [备份还原](backup)。**
+**注意：升级前请先做好备份，可参考 [备份还原](./backup)。**
 
 :::

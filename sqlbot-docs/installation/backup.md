@@ -134,7 +134,7 @@ pg_restore -h <DB_HOST> -p 5432 -U root -d sqlbot --clean --if-exists ./sqlbot-Y
 
 - `sctl status` 或 `docker ps` 正常，可用原管理员账号登录
 - 抽查数据源、Excel、历史问数、术语 / SQL 示例
-- 迁移后若 MCP 无图，按 [数据迁移](migration) 修改 `SERVER_IMAGE_HOST`
-- 升级场景请先完成本文备份，再执行 [离线升级](offline_upgrade)
+- 迁移后若 MCP 无图，按 [数据迁移](./migration) 修改 `SERVER_IMAGE_HOST`
+- 升级场景请先完成本文备份，再执行 [离线升级](./offline_upgrade)
 
 :::

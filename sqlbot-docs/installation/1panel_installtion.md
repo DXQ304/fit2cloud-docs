@@ -6,7 +6,7 @@ title: 1Panel 安装
 
 :::tip
 
-关于 1Panel 的安装部署与基础功能介绍，请参考 [**1Panel 官方文档**](https://1panel.cn/docs/) 。完成 1Panel 的安装部署后，根据提示网址打开浏览器进入 1Panel，界面如下。
+关于 1Panel 的安装部署与基础功能介绍，请参考 [**1Panel 文档**](/1panel/) 。完成 1Panel 的安装部署后，根据提示网址打开浏览器进入 1Panel，界面如下。
 
 :::
 
