@@ -69,12 +69,12 @@ title: 账号与系统设置
 
 1. 单击页面**右上角**的「**关于**」链接。
 2. 弹出「**关于**」弹窗，顶部展示 1Panel AI 网关的 Logo，下方显示：
-   - **当前版本**：形如 `v1.2.3` 或 `dev`（内测版）
-   - **三个支持入口链接**：
+- **当前版本**：形如 `v1.2.3` 或 `dev`（内测版）
+- **三个支持入口链接**：
      - **论坛求助**：去社区提问
      - **使用文档**：跳转回当前文档
      - **项目地址**：跳转到 GitHub 仓库
-   - **Copyright**：版权信息
+- **Copyright**：版权信息
 3. 单击弹窗右上角 **×** 或按 **Esc** 关闭。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/account-settings-and-notes/image2-about.png" alt="关于弹窗"/>
