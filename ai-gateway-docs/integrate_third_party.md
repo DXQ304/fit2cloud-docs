@@ -14,7 +14,7 @@ title: 接入第三方
 1. **接口地址（Base URL）**：例如 [https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)，注意末尾的 `/v1` 不能少。
 2. **模型名称**：管理员在网关里给你开通的模型标识（例如 `1Panel-Auto`），配置时必须一字不差。
 
-### 1 准备工作：获取 API Key（三个客户端通用）
+### 1 准备工作：获取 API Key
 
 不管你用哪个客户端，都需要先在 1Panel AI 网关管理端创建属于自己的 API Key。如果你已经做过这一步并保存了 Key，可以跳到对应客户端的章节。
 
@@ -268,7 +268,67 @@ Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"�
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20  选择自定义模型并测试</div>
 
-### 6 接入 OpenClaw
+### 6 接入 Claude Code
+
+#### 6.1 下载并安装 Claude Code
+
+Claude Code 是 Anthropic 推出的终端编程助手，在命令行里敲 `claude` 命令使用。打开 PowerShell，输入：
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+:::note[注意]
+
+- 包名是 `@anthropic-ai/claude-code`。
+- 安装需要 Node.js（版本建议 22 及以上），安装方法见 4.1 节；若提示 `Auto-update failed`，可执行 `claude doctor` 查看提示。
+
+:::
+
+#### 6.2 CC Switch 配置供应商
+
+与 codex 一样，Claude Code 也通过 CC Switch 管理供应商配置（CC Switch 的下载与安装见 4.2 节）。Claude Code 原生使用 Anthropic 协议，而 1Panel AI 网关是 OpenAI 兼容接口，因此这里要多做一步「协议转换」：由 CC Switch 在本地把 Claude Code 发出的 Anthropic 请求改写成 Chat Completions 请求再发给网关。
+
+打开 CC Switch，在 Claude 标签页点击「+」新建供应商（或编辑已有配置），填写以下信息（对应下图标号）：
+
+1. **供应商名称**：随意起（如 `fit2cloud`）
+2. **API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
+3. **请求地址**：`https://1router.1panel.cn/v1`（页面会提示"不要以斜杠结尾"，即末尾不带 `/`，`/v1` 保留）
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_ccswitch_edit_provider_name_apikey_baseurl.png" alt="填写供应商名称、API Key 与请求地址"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  填写供应商名称、API Key 与请求地址</div>
+
+展开「高级选项」，完成两项关键设置：
+
+- **上游格式**：选择「OpenAI Chat Completions（需开启路由）」——CC Switch 内置本地路由会常驻运行，无需手动开启
+- **模型映射**：在「Sonnet」行的「显示名称」和「实际请求模型」两栏，填入网关开通的模型标识（如 `f2c-deepseek-v4-flash`），两栏保持一致
+
+保存后回到供应商列表，点击该供应商的「启用」按钮，使其成为 Claude Code 当前使用的配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_ccswitch_upstream_format_model_mapping.png" alt="上游格式与模型映射"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  上游格式选择与模型映射</div>
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_ccswitch_enable_provider.png" alt="启用供应商"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  启用供应商</div>
+
+#### 6.3 启动并测试对话
+
+新开一个终端窗口（使新配置生效），进入你要操作的项目目录后输入 `claude` 启动。首次运行时 Claude Code 会做安全检查，询问是否信任当前文件夹，选择「1. Yes, I trust this folder」并按回车。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_claude_trust_folder.png" alt="信任当前文件夹"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  选择信任当前文件夹</div>
+
+进入对话界面后，顶部会显示当前所用模型（即你在模型映射中配置的网关模型）。发送一条简单消息（如 `hello`），能正常收到回复，说明 Claude Code → CC Switch 本地路由（协议转换）→ 1Panel AI 网关 → 上游模型链路已经打通。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_claude_test_chat.png" alt="claude 测试对话"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  claude 测试对话成功</div>
+
+### 7 接入 OpenClaw
 
 OpenClaw 是一款开源的个人 AI 助手（通过终端使用），同样支持接入自定义模型。接入它需要先在电脑上安装 Node.js（版本建议 22 及以上，方法见 4.1 节），然后在终端（Windows 用 PowerShell）执行安装命令：
 
@@ -278,7 +338,7 @@ npm install -g openclaw
 
 接入 1Panel AI 网关有两种配置方式，任选其一即可：方式一用交互式配置向导（推荐，全程按提示填写）；方式二直接编辑配置文件 `openclaw.json`（适合熟悉 JSON 的用户）。
 
-#### 6.1 方式一：交互式配置向导
+#### 8.1 方式一：交互式配置向导
 
 在终端执行以下命令，进入模型配置向导：
 
@@ -288,15 +348,15 @@ openclaw configure --section model
 
 在「Model/auth provider」列表中，用方向键选中「More...」并按回车，展开完整供应商列表。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_openclaw_config_section_model.png" alt="进入模型配置向导"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image31_openclaw_config_validate.png" alt="进入模型配置向导"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  进入模型配置向导并展开更多供应商</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26  进入模型配置向导并展开更多供应商</div>
 
 在列表中选中「Custom Provider (Any OpenAI or Anthropic compatible endpoint)」并按回车。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_openclaw_select_custom_provider.png" alt="选择 Custom Provider"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image27_openclaw_select_custom_provider.png" alt="选择 Custom Provider"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  选择 Custom Provider</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 27  选择 Custom Provider</div>
 
 按提示依次填写三项信息：
 
@@ -306,17 +366,17 @@ openclaw configure --section model
 
 填完 Model ID 后，向导会自动校验连通性并显示「Verification successful」；「Endpoint compatibility」保持默认的 OpenAI-compatible，「Endpoint ID」保持与模型 ID 一致即可。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_openclaw_fill_baseurl_apikey_modelid.png" alt="填写接口地址、API Key 与模型 ID"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image28_openclaw_fill_baseurl_apikey_modelid.png" alt="填写接口地址、API Key 与模型 ID"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  填写接口地址、API Key 与模型 ID 并通过校验</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 28  填写接口地址、API Key 与模型 ID 并通过校验</div>
 
 一路按回车完成剩余选项后，终端出现「Configuration updated.」表示配置已写入 `~/.openclaw/openclaw.json`（旧配置会自动备份为 `.bak` 文件）。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_openclaw_config_updated.png" alt="配置更新完成"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image29_openclaw_config_updated.png" alt="配置更新完成"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  出现 Configuration updated 即配置完成</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 29  出现 Configuration updated 即配置完成</div>
 
-#### 6.2 方式二：直接编辑 openclaw.json
+#### 8.2 方式二：直接编辑 openclaw.json
 
 配置向导不方便使用时，可以直接编辑配置文件 `~/.openclaw/openclaw.json`（Windows 上位于 `C:\Users\<你的用户名>\.openclaw\openclaw.json`），在 `models.providers` 下添加自定义供应商节点，核心字段如下：
 
@@ -346,11 +406,11 @@ openclaw configure --section model
 - **api**：固定填 `openai-completions`
 - **models 的 id / name**：网关开通的模型标识，两处保持一致
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_openclaw_edit_json_config.png" alt="编辑 openclaw.json"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image30_openclaw_edit_json_config.png" alt="编辑 openclaw.json"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  在 openclaw.json 中配置自定义供应商</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 30  在 openclaw.json 中配置自定义供应商</div>
 
-#### 6.3 校验配置
+#### 8.3 校验配置
 
 两种方式配置完成后，都执行以下命令校验配置文件是否合法：
 
@@ -360,9 +420,9 @@ openclaw config validate
 
 终端输出「Config valid: ~/.openclaw\openclaw.json」（绿色）即表示配置正确。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_validate.png" alt="配置校验通过"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_section_model.png" alt="配置校验通过"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26  openclaw config validate 校验通过</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 31  openclaw config validate 校验通过</div>
 
 :::note[常见踩坑]
 
@@ -371,7 +431,7 @@ openclaw config validate
 
 :::
 
-#### 6.4 启动网关并测试对话
+#### 8.4 启动网关并测试对话
 
 校验通过后，启动 OpenClaw 网关：
 
@@ -381,17 +441,17 @@ openclaw gateway run --verbose
 
 启动日志最后一行出现 `agent model: my-selfhost/1Panel-Auto`（即配置的供应商/模型）说明模型已生效。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image27_openclaw_gateway_run.png" alt="启动 OpenClaw 网关"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image32_openclaw_gateway_run.png" alt="启动 OpenClaw 网关"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 27  启动网关，agent model 显示为已接入的模型</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 32  启动网关，agent model 显示为已接入的模型</div>
 
 新开一个终端执行 `openclaw tui` 进入对话界面，发送一条简单消息（如"你好"）。能收到模型回复，且状态栏显示所用模型（如 `1Panel-Auto`），说明 OpenClaw → 1Panel AI 网关 → 上游模型链路已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image28_openclaw_tui_test_chat.png" alt="openclaw tui 测试对话"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image33_openclaw_tui_test_chat.png" alt="openclaw tui 测试对话"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 28  openclaw tui 测试对话成功</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 33  openclaw tui 测试对话成功</div>
 
-### 7 常见问题排查（FAQ）
+### 8 常见问题排查（FAQ）
 
 配置完成后测试如果不通，按下面的对照表排查，基本都能解决：
 
