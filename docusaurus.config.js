@@ -31,15 +31,14 @@ const config = {
 
   // 各产品图片自包含: 图片放在各自产品目录的 static/ 里, 统一平铺映射到 /（URL 保持 /img/<ns>/...）
   // 注意: 'static'(门户自身, favicon/social-card/undraw)必须放在第一位, 避免同路径被产品目录覆盖。
-  // 1Panel 已按自包含架构迁移; dataease/maxkb/jumpserver 当前为单 index.md 占位(无图片), 预留注册项(建立后自动生效)。
-  // sqlbot: 已按自包含架构迁入, namespace=sqlbot。
+  // 1Panel / SQLBot / DataEase 已按自包含架构迁移; maxkb/jumpserver 当前为单 index.md 占位(无图片), 预留注册项(建立后自动生效)。
   staticDirectories: [
     'static',
     '1panel-docs/static',
     '1panel_versioned_docs/version-v1/static',
     'sqlbot-docs/static',
-    // 以下为预留(当前无图片, 建立后自动生效)
     'dataease-docs/static',
+    // 以下为预留(当前无图片, 建立后自动生效)
     'maxkb-docs/static',
     'ai-gateway-docs/static',
   ],
@@ -136,7 +135,7 @@ const config = {
         },
       },
     ],
-    // BI 分类：DataEase(模拟)
+    // DataEase 官方文档(从 MkDocs v3 迁移), namespace=dataease
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -144,6 +143,11 @@ const config = {
         path: 'dataease-docs',
         routeBasePath: 'dataease',
         sidebarPath: 'dataease-docs/sidebars.js',
+        // 版本化: current = v3, 暂无历史版本(后续出新版用 docs:version:dataease v3 快照)
+        lastVersion: 'current',
+        versions: {
+          current: { label: 'v3', badge: false, banner: 'none' },
+        },
       },
     ],
     // AI 分类：MaxKB(模拟)
