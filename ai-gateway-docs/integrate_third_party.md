@@ -148,7 +148,7 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  选择模型并测试</div>
 
 
-### 4 接入 codex
+### 4 接入 Codex
 
 #### 4.1 下载并安装 Codex（Codex CLI）
 
