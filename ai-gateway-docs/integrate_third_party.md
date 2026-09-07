@@ -150,7 +150,7 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 
 ### 4 接入 codex
 
-#### 4.1 下载并安装 codex（Codex CLI）
+#### 4.1 下载并安装 Codex（Codex CLI）
 
 Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在命令行（终端）里敲 `codex` 命令使用。安装分两步：
 
@@ -323,8 +323,10 @@ Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"�
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  填写模型名称、API Key 与接口地址</div>
 
-:::note[注意]  
-接口地址末尾的 `/v1` 路径不可省略。若你的网关部署在本地或内网，地址以管理员提供的实际地址为准。  
+:::note[注意]
+  
+接口地址末尾的 `/v1` 路径不可省略。若你的网关部署在本地或内网，地址以管理员提供的实际地址为准。
+  
 :::
 
 #### 6.4 选择模型并测试
@@ -435,7 +437,8 @@ openclaw config validate
 :::note[常见踩坑]
 
 - JSON 里字段名写错（如 `baseUrl` 写成 `base_url`）、`api` 值填错，都会导致校验报错「Invalid option」或「Unrecognized key」，按错误提示里给出的合法值修正即可。
-- 不要用 `openclaw config set auth.openai.baseURL ...` 来配置网关——该键位校验会失败，正确做法就是用上面的方式一或方式二写入 `models.providers`。    
+- 不要用 `openclaw config set auth.openai.baseURL ...` 来配置网关——该键位校验会失败，正确做法就是用上面的方式一或方式二写入 `models.providers`。
+    
   :::
 
 #### 7.4 启动网关并测试对话
