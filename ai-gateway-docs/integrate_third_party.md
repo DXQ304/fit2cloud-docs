@@ -11,8 +11,9 @@ title: 接入第三方
 
 在动手前，请先向管理员确认两件事（建议拿张纸记下来）：
 
-1. **接口地址（Base URL）**：例如 [https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)，注意末尾的 `/v1` 不能少。
+1. **接口地址（Base URL）**：例如 `https://1router.1panel.cn/v1`，注意末尾的 `/v1` 不能少。
 2. **模型名称**：管理员在网关里给你开通的模型标识（例如 `1Panel-Auto`），配置时必须一字不差。
+
 
 ### 1 准备工作：获取 API Key
 
@@ -36,13 +37,14 @@ title: 接入第三方
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 3  复制 API Key</div>
 
+
 ### 2 接入 WorkBuddy
 
 #### 2.1 下载并安装 WorkBuddy
 
 WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击安装包、像装普通软件一样下一步到底即可。
 
-- **官方下载页**：[https://www.workbuddy.cn/](https://www.workbuddy.cn/)（打开网页后点击页面上的"立即下载"，按自己的电脑系统选择：Windows 选 **Windows x64**；Mac 电脑按芯片选 **Apple 芯片（M 系列）** 或 **Intel** 版本）
+- **官方下载页**：<https://www.workbuddy.cn/>（打开网页后点击页面上的"立即下载"，按自己的电脑系统选择：Windows 选 **Windows x64**；Mac 电脑按芯片选 **Apple 芯片（M 系列）** 或 **Intel** 版本）
 
 :::tip[温馨提示]
 
@@ -68,7 +70,7 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 填入以下三项信息：
 
-- 接口地址（Base URL）：[https://1router.1panel.cn/v1](https://1router.1panel.cn/v1) （以管理员给你的地址为准）
+- 接口地址（Base URL）：`https://1router.1panel.cn/v1`（以管理员给你的地址为准）
 - API Key：第 1 步里复制的 API Key
 - 模型名称：管理员给你开通的模型名称
 
@@ -92,23 +94,24 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 7  保存并测试模型</div>
 
+
 ### 3 接入 DeepSeek Harness
 
 #### 3.1 下载并安装 DeepSeek Harness
 
 DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下载一个安装包"这么简单，需要先了解一下两种官方安装方式，任选其一：
 
-- **方式一：命令行快速启动（推荐）**。先安装 Node.js（去官网 [https://nodejs.org](https://nodejs.org) 下载 LTS 版本，一路下一步安装即可），然后在终端（Windows 打开 PowerShell，Mac 打开"终端"）里输入下面这行命令回车，等待启动完成：
+- **方式一：命令行快速启动（推荐）**。先安装 Node.js（去官网 <https://nodejs.org/> 下载 LTS 版本，一路下一步安装即可），然后在终端（Windows 打开 PowerShell，Mac 打开"终端"）里输入下面这行命令回车，等待启动完成：
   ```bash
   npx @deepseek-ai/dsh web
   ```
-  启动成功后，终端会显示一个本地网址（例如 [http://127.0.0.1:3080](http://127.0.0.1:3080)），用浏览器打开这个网址，就是 DeepSeek Harness 的操作界面。
+  启动成功后，终端会显示一个本地网址（例如 `http://127.0.0.1:3080`），用浏览器打开这个网址，就是 DeepSeek Harness 的操作界面。
 - **方式二：源码安装（适合有开发经验的用户）**：
   ```bash
   git clone https://github.com/deepseek-ai/deepseek-harness
   ```
   然后按照仓库里的说明完成安装。
-- **官方渠道入口**：官网 [https://www.deepseek.com](https://www.deepseek.com)（DeepSeek 官网首页可找到 Harness 相关入口）；GitHub 仓库 [https://github.com/deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness)。
+- **官方渠道入口**：官网 <https://www.deepseek.com>（DeepSeek 官网首页可找到 Harness 相关入口）；GitHub 仓库 <https://github.com/deepseek-ai/deepseek-harness>。
 
 :::warning[认准官方渠道]
 
@@ -126,7 +129,7 @@ DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下
 
 填写提供方配置：名称可以随意起（仅用于自己识别）。
 
-API 地址填 [https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)（末尾 `/v1` 不可省略）。
+API 地址填 `https://1router.1panel.cn/v1`（末尾 `/v1` 不可省略）。
 
 API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 
@@ -144,13 +147,14 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  选择模型并测试</div>
 
+
 ### 4 接入 codex
 
-#### 4.1 下载并安装 Codex（Codex CLI）
+#### 4.1 下载并安装 codex（Codex CLI）
 
 Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在命令行（终端）里敲 `codex` 命令使用。安装分两步：
 
-第一步，安装 Node.js（版本建议 22 及以上）。去 Node.js 官网 [https://nodejs.org](https://nodejs.org) 下载 LTS 版本，安装时保持默认选项即可。装完打开终端输入 `node -v`，能显示版本号就说明装好了。
+第一步，安装 Node.js（版本建议 22 及以上）。去 Node.js 官网 <https://nodejs.org/> 下载 LTS 版本，安装时保持默认选项即可。装完打开终端输入 `node -v`，能显示版本号就说明装好了。
 
 第二步，安装 Codex CLI。打开终端（Windows 用 PowerShell，Mac 用"终端"），输入：
 
@@ -161,19 +165,19 @@ npm install -g @openai/codex
 :::tip[温馨提示]
 
 - 包名必须是 `@openai/codex`，注意前面有 `@openai/`，不要只输 `codex`，那是一个不相关的旧包。
-- 如果下载很慢或超时，可以先换国内镜像源再装：`npm config set registry1` [https://registry.npmmirror.com](https://registry.npmmirror.com)
+- 如果下载很慢或超时，可以先换国内镜像源再装：`npm config set registry https://registry.npmmirror.com`
 
   :::
 
 安装完输入 `codex --version`，能显示版本号即成功。
 
-- **官方仓库**：[https://github.com/openai/codex](https://github.com/openai/codex)（也可从仓库的 Releases 页下载免 Node.js 的预编译版本）
+- **官方仓库**：<https://github.com/openai/codex>（也可从仓库的 Releases 页下载免 Node.js 的预编译版本）
 
 #### 4.2 CC Switch 配置
 
 Codex CLI 本身不提供可视化的供应商管理界面，直接修改 `~/.codex/config.toml` 的方式门槛较高。这里借助 CC Switch 这一小工具完成配置：它负责管理 Codex 的供应商配置，并把请求路由到 1Panel AI 网关，无需手工编辑配置文件。
 
-CC Switch 下载地址（GitHub Releases 发布页）：[https://github.com/farion1231/cc-switch/releases/latest](https://github.com/farion1231/cc-switch/releases/latest)
+CC Switch 下载地址（GitHub Releases 发布页）：<https://github.com/farion1231/cc-switch/releases/latest>
 
 - Windows：下载 `CC-Switch-vX.X.X-Windows.msi` 安装包，双击按向导安装
 - macOS：下载 `CC-Switch-vX.X.X-macOS.zip`，解压后把应用拖入"应用程序"文件夹（首次打开若提示"未知开发者"，前往「系统设置 → 隐私与安全性」点击「仍要打开」）
@@ -187,7 +191,7 @@ CC Switch 下载地址（GitHub Releases 发布页）：[https://github.com/fari
 在弹出的表单中选择「自定义配置」，并填写以下信息：
 
 - API Key：粘贴在 1Panel AI 网关管理端创建的 API Key
-- API 请求地址：[https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)（注意末尾的 `/v1` 不可省略）
+- API 请求地址：`https://1router.1panel.cn/v1`（注意末尾的 `/v1` 不可省略）
 
 同时打开「本地路由映射」开关。该功能会在本机启动一个代理地址，Codex 的请求先发往本地代理，再由 CC Switch 转发到 1Panel AI 网关，从而绕开 Codex 对官方接口地址的限制。
 
@@ -209,124 +213,128 @@ CC Switch 下载地址（GitHub Releases 发布页）：[https://github.com/fari
 
 #### 4.3 发起测试对话
 
-在 Codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（Codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
+在 codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image15_codex_select_model_test.png" alt="codex 测试对话"/>
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 15  codex 测试对话</div>
 
-### 5 接入 Cursor
 
-#### 5.1 下载并安装 Cursor
+### 5 接入 Claude Code
 
-Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"），支持 Windows、macOS 和 Linux。打开官网 [https://cursor.com/download](https://cursor.com/download)，点击「Download for Windows / Mac」下载安装包，双击安装即可，无需额外配置环境。
+#### 5.1 下载并安装 Claude Code
 
-#### 5.2 添加自定义模型
+Claude Code 是 Anthropic 推出的终端编程助手（与 codex 类似，在命令行里敲 `claude` 命令使用），支持 Windows、macOS 和 Linux。
+
+打开官方文档页 <https://docs.anthropic.com/en/docs/claude-code/getting-started>，按自己电脑的系统选择安装方式：
+
+- **Windows**：在 PowerShell 里执行官方安装命令（也可先安装 Node.js 22 及以上，再执行 `npm install -g @anthropic-ai/claude-code`）
+- **macOS / Linux**：在终端执行官方安装命令
+
+安装完在终端输入 `claude --version`，能显示版本号即成功。
+
+:::tip[温馨提示]
+
+如果 `npm install` 下载很慢或超时，可先换国内镜像源再装：`npm config set registry https://registry.npmmirror.com`
+
+:::
+
+#### 5.2 用 CC Switch 配置供应商
+
+Claude Code 本身没有可视化配置界面，这里与 codex 一样借助 CC Switch 完成配置（下载地址见 4.2 节）。打开 CC Switch，点击右上角「添加」新建供应商，选择「自定义配置」，填写以下信息：
+
+- **供应商名称**：随意起（仅用于自己识别，如 `1panel`）
+- **API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
+- **请求地址**：`https://1router.1panel.cn/v1`（注意末尾的 `/v1` 不可省略，且不要以斜杠结尾）
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image16_ccswitch_edit_provider_name_apikey_baseurl.png" alt="Claude Code 供应商配置"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 16  填写供应商名称、API Key 与请求地址</div>
+
+展开「高级选项」，按以下要点设置：
+
+- **上游格式**：选择「OpenAI Chat Completions（需开启路由）」——网关提供的是 OpenAI 兼容接口，而 Claude Code 原生使用 Anthropic 协议，由 CC Switch 在本地完成协议转换
+- **认证字段**：保持默认的 `ANTHROPIC_AUTH_TOKEN`
+- **模型映射**：在「Sonnet」等模型角色行中，把「显示名称」与「实际请求模型」都填为网关开通的模型标识（需与模型广场展示的名称一字不差）；其余角色行可留空
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image17_ccswitch_upstream_format_model_mapping.png" alt="Claude Code 上游格式与模型映射"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17  设置上游格式、认证字段与模型映射</div>
+
+#### 5.3 启用供应商
+
+回到 CC Switch 开始界面，在供应商列表中选中刚创建的 1Panel AI 网关配置，点击「启用」。启用后 CC Switch 会把本地路由与 Claude Code 的配置一并写入。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image18_ccswitch_enable_provider.png" alt="启用 Claude Code 供应商"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18  启用 1Panel AI 网关供应商</div>
+
+#### 5.4 信任文件夹并测试对话
+
+打开一个新的终端，输入 `claude` 启动。首次运行时 Claude Code 会进行安全校验，询问是否信任当前文件夹：选择「Yes, I trust this folder」并按回车。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image19_claude_trust_folder.png" alt="Claude Code 信任文件夹"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19  首次启动时信任当前文件夹</div>
+
+之后在输入框发送一条简单消息（如 `hello`）。若能正常返回回复（如 `Hello! How can I help you today?`），说明 Claude Code → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型的链路已经打通。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image20_claude_test_chat.png" alt="Claude Code 测试对话"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20  Claude Code 测试对话成功</div>
+
+
+### 6 接入 Cursor
+
+#### 6.1 下载并安装 Cursor
+
+Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"），支持 Windows、macOS 和 Linux。打开官网 <https://cursor.com/download>，点击「Download for Windows / Mac」下载安装包，双击安装即可，无需额外配置环境。
+
+#### 6.2 添加自定义模型
 
 打开 Cursor 并登录账号后，在对话输入框下方点击当前模型名称（如 `Composer 2.5 Fast`）打开模型下拉菜单，点击列表底部的「Add Models」。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image16_cursor_add_models.png" alt="点击 Add Models"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_cursor_add_models.png" alt="点击 Add Models"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 16  点击 Add Models</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  点击 Add Models</div>
 
 进入「Models」设置页后，点击列表底部的「View All Models」展开全部模型。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image17_cursor_models_view_all.png" alt="View All Models"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_cursor_models_view_all.png" alt="View All Models"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17  展开全部模型</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  展开全部模型</div>
 
 在展开的模型列表最底部，点击「+ Add Custom Model」，开始添加网关模型。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image18_cursor_add_custom_model.png" alt="Add Custom Model"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_cursor_add_custom_model.png" alt="Add Custom Model"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18  点击 Add Custom Model</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  点击 Add Custom Model</div>
 
-#### 5.3 填写接入配置
+#### 6.3 填写接入配置
 
 按以下顺序填写四项信息（对应下图标号）：
 
 1. **模型名称**：填写网关开通的模型标识（如 `1Panel-Auto`），需与模型广场展示的名称一字不差
 2. **OpenAI API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
-3. **Override OpenAI Base URL**：打开该开关，填入接口地址 [https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)（末尾 `/v1` 不可省略）
+3. **Override OpenAI Base URL**：打开该开关，填入接口地址 `https://1router.1panel.cn/v1`（末尾 `/v1` 不可省略）
 4. 点击「Add」保存
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image19_cursor_fill_apikey_baseurl.png" alt="填写接入配置"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_cursor_fill_apikey_baseurl.png" alt="填写接入配置"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19  填写模型名称、API Key 与接口地址</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  填写模型名称、API Key 与接口地址</div>
 
-:::note[注意]
-
-接口地址末尾的 `/v1` 路径不可省略。若你的网关部署在本地或内网，地址以管理员提供的实际地址为准。
-
+:::note[注意]  
+接口地址末尾的 `/v1` 路径不可省略。若你的网关部署在本地或内网，地址以管理员提供的实际地址为准。  
 :::
 
-#### 5.4 选择模型并测试
+#### 6.4 选择模型并测试
 
-回到对话界面，再次打开模型下拉菜单，此时列表中已出现刚添加的模型（如 `1Panel-Auto`），点击选中它并发送一条简单消息。若能正常返回回复，说明 Cursor → 1Panel AI 网关 → 上游模型的链路已经打通。
+回到对话界面，再次打开模型下拉菜单，此时列表中已出现刚添加的模型（如 `1Panel-Auto`），点击选中它（下图中红框）并发送一条简单消息。若能正常返回回复，说明 Cursor → 1Panel AI 网关 → 上游模型的链路已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image20_cursor_select_model_test.png" alt="选择模型并测试"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_cursor_select_model_test.png" alt="选择模型并测试"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20  选择自定义模型并测试</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  选择自定义模型（1Panel-Auto）并测试</div>
 
-### 6 接入 Claude Code
-
-#### 6.1 下载并安装 Claude Code
-
-Claude Code 是 Anthropic 推出的终端编程助手，在命令行里敲 `claude` 命令使用。打开 PowerShell，输入：
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-:::note[注意]
-
-- 包名是 `@anthropic-ai/claude-code`。
-- 安装需要 Node.js（版本建议 22 及以上），安装方法见 4.1 节；若提示 `Auto-update failed`，可执行 `claude doctor` 查看提示。
-
-:::
-
-#### 6.2 CC Switch 配置供应商
-
-与 codex 一样，Claude Code 也通过 CC Switch 管理供应商配置（CC Switch 的下载与安装见 4.2 节）。Claude Code 原生使用 Anthropic 协议，而 1Panel AI 网关是 OpenAI 兼容接口，因此这里要多做一步「协议转换」：由 CC Switch 在本地把 Claude Code 发出的 Anthropic 请求改写成 Chat Completions 请求再发给网关。
-
-打开 CC Switch，在 Claude 标签页点击「+」新建供应商（或编辑已有配置），填写以下信息（对应下图标号）：
-
-1. **供应商名称**：随意起（如 `fit2cloud`）
-2. **API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
-3. **请求地址**：`https://1router.1panel.cn/v1`（页面会提示"不要以斜杠结尾"，即末尾不带 `/`，`/v1` 保留）
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_ccswitch_edit_provider_name_apikey_baseurl.png" alt="填写供应商名称、API Key 与请求地址"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  填写供应商名称、API Key 与请求地址</div>
-
-展开「高级选项」，完成两项关键设置：
-
-- **上游格式**：选择「OpenAI Chat Completions（需开启路由）」——CC Switch 内置本地路由会常驻运行，无需手动开启
-- **模型映射**：在「Sonnet」行的「显示名称」和「实际请求模型」两栏，填入网关开通的模型标识（如 `f2c-deepseek-v4-flash`），两栏保持一致
-
-保存后回到供应商列表，点击该供应商的「启用」按钮，使其成为 Claude Code 当前使用的配置。
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_ccswitch_upstream_format_model_mapping.png" alt="上游格式与模型映射"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  上游格式选择与模型映射</div>
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_ccswitch_enable_provider.png" alt="启用供应商"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  启用供应商</div>
-
-#### 6.3 启动并测试对话
-
-新开一个终端窗口（使新配置生效），进入你要操作的项目目录后输入 `claude` 启动。首次运行时 Claude Code 会做安全检查，询问是否信任当前文件夹，选择「1. Yes, I trust this folder」并按回车。
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_claude_trust_folder.png" alt="信任当前文件夹"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  选择信任当前文件夹</div>
-
-进入对话界面后，顶部会显示当前所用模型（即你在模型映射中配置的网关模型）。发送一条简单消息（如 `hello`），能正常收到回复，说明 Claude Code → CC Switch 本地路由（协议转换）→ 1Panel AI 网关 → 上游模型链路已经打通。
-
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_claude_test_chat.png" alt="claude 测试对话"/>
-
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  claude 测试对话成功</div>
 
 ### 7 接入 OpenClaw
 
@@ -338,7 +346,7 @@ npm install -g openclaw
 
 接入 1Panel AI 网关有两种配置方式，任选其一即可：方式一用交互式配置向导（推荐，全程按提示填写）；方式二直接编辑配置文件 `openclaw.json`（适合熟悉 JSON 的用户）。
 
-#### 8.1 方式一：交互式配置向导
+#### 7.1 方式一：交互式配置向导
 
 在终端执行以下命令，进入模型配置向导：
 
@@ -348,7 +356,7 @@ openclaw configure --section model
 
 在「Model/auth provider」列表中，用方向键选中「More...」并按回车，展开完整供应商列表。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image31_openclaw_config_validate.png" alt="进入模型配置向导"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_section_model.png" alt="进入模型配置向导"/>
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26  进入模型配置向导并展开更多供应商</div>
 
@@ -360,7 +368,7 @@ openclaw configure --section model
 
 按提示依次填写三项信息：
 
-- **API Base URL**：[https://1router.1panel.cn/v1](https://1router.1panel.cn/v1)（末尾 `/v1` 不可省略）
+- **API Base URL**：`https://1router.1panel.cn/v1`（末尾 `/v1` 不可省略）
 - **API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
 - **Model ID**：网关开通的模型标识（如 `1Panel-Auto`），需与模型广场展示的名称一字不差
 
@@ -376,7 +384,7 @@ openclaw configure --section model
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 29  出现 Configuration updated 即配置完成</div>
 
-#### 8.2 方式二：直接编辑 openclaw.json
+#### 7.2 方式二：直接编辑 openclaw.json
 
 配置向导不方便使用时，可以直接编辑配置文件 `~/.openclaw/openclaw.json`（Windows 上位于 `C:\Users\<你的用户名>\.openclaw\openclaw.json`），在 `models.providers` 下添加自定义供应商节点，核心字段如下：
 
@@ -410,7 +418,7 @@ openclaw configure --section model
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 30  在 openclaw.json 中配置自定义供应商</div>
 
-#### 8.3 校验配置
+#### 7.3 校验配置
 
 两种方式配置完成后，都执行以下命令校验配置文件是否合法：
 
@@ -420,18 +428,17 @@ openclaw config validate
 
 终端输出「Config valid: ~/.openclaw\openclaw.json」（绿色）即表示配置正确。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_section_model.png" alt="配置校验通过"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image31_openclaw_config_validate.png" alt="配置校验通过"/>
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 31  openclaw config validate 校验通过</div>
 
 :::note[常见踩坑]
 
 - JSON 里字段名写错（如 `baseUrl` 写成 `base_url`）、`api` 值填错，都会导致校验报错「Invalid option」或「Unrecognized key」，按错误提示里给出的合法值修正即可。
-- 不要用 `openclaw config set auth.openai.baseURL ...` 来配置网关——该键位校验会失败，正确做法就是用上面的方式一或方式二写入 `models.providers`。
+- 不要用 `openclaw config set auth.openai.baseURL ...` 来配置网关——该键位校验会失败，正确做法就是用上面的方式一或方式二写入 `models.providers`。    
+  :::
 
-:::
-
-#### 8.4 启动网关并测试对话
+#### 7.4 启动网关并测试对话
 
 校验通过后，启动 OpenClaw 网关：
 
@@ -455,9 +462,10 @@ openclaw gateway run --verbose
 
 配置完成后测试如果不通，按下面的对照表排查，基本都能解决：
 
-| 报错现象              | 大概率原因                           | 解决办法                                      |
-| ----------------- | ------------------------------- | ----------------------------------------- |
-| 401 / 403         | API Key 无效、复制不完整（少了开头或结尾字符）、已过期 | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格            |
-| 404               | 接口地址或模型名称填错                     | 检查 Base URL 末尾是否有 `/v1`；模型名称与管理员开通的是否一字不差 |
-| 连接超时 / 无法访问       | 网络不通、地址不对                       | 换个浏览器访问 Base URL 确认可达；确认电脑没有开启拦截流量的代理软件   |
-| 能连通但没有回复 / 模型列表为空 | 该模型未分配给你的账号                     | 联系管理员确认模型已加入你的用户组                         |
+| 报错现象                        | 大概率原因                                                    | 解决办法                                            |
+| --------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
+| 401 / 403                   | API Key 无效、复制不完整（少了开头或结尾字符）、已过期                          | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格                  |
+| 404                         | 接口地址或模型名称填错                                              | 检查 Base URL 末尾是否有 `/v1`；模型名称与管理员开通的是否一字不差       |
+| 连接超时 / 无法访问                 | 网络不通、地址不对                                                | 换个浏览器访问 Base URL 确认可达；确认电脑没有开启拦截流量的代理软件         |
+| 能连通但没有回复 / 模型列表为空           | 该模型未分配给你的账号                                              | 联系管理员确认模型已加入你的用户组                               |
+| Claude Code 报错连不上 / 走的是官方接口 | CC Switch 供应商未启用，或上游格式未选「OpenAI Chat Completions（需开启路由）」 | 回到 CC Switch 确认网关供应商处于「启用」状态，并在高级选项中检查上游格式与模型映射 |
