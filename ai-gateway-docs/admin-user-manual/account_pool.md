@@ -145,7 +145,7 @@ DeepSeek 账号的配置方式如下图所示。
 
 **步骤2 配置样例**
 
-腾讯云-文生图模型的配置方式如下图所示。腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
+腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image11_tencent_cloud_text_to_image_model_configuration_example.png" alt="腾讯云 - 文生图模型配置样例"/>
 
@@ -174,7 +174,7 @@ DeepSeek 账号的配置方式如下图所示。
 
 **步骤2 配置样例**
 
-阿里云百炼-文生图模型的配置方式如下图所示。腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
+阿里云百炼-文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image13_aliyun_text_to_image_model_configuration_example.png" alt="阿里云 - 文生图模型配置样例"/>
 
