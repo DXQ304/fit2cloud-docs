@@ -461,14 +461,124 @@ openclaw gateway run --verbose
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 33  openclaw tui 测试对话成功</div>
 
-### 8 常见问题排查（FAQ）
+### 8 接入 OpenCode
+
+OpenCode 是一款开源的终端 AI 编程助手，支持 Windows、macOS 和 Linux，通过 Node.js 安装并以命令行的方式使用。接入流程与 OpenClaw 类似：先安装客户端与依赖 SDK → 在配置目录写入 `opencode.json` → 启动 OpenCode 并发起测试对话。
+
+#### 8.1 下载并安装 OpenCode
+
+OpenCode 没有图形安装包，需要在命令行里通过 npm 全局安装。打开终端（Windows 用 PowerShell，Mac/Linux 用"终端"），依次执行以下命令：
+
+第一步，安装 OpenCode 本体（包名是 `opencode-ai`，注意不是 `opencode`）：
+
+```bash
+npm install -g opencode-ai
+```
+
+安装过程中若弹出 `npm warn allow-scripts ... added 3 packages in 19s` 之类的提示，按提示再次执行 `npm install -g --allow-scripts opencode-ai` 或运行 `npm config set allow-scripts=opencode-ai --location=user` 即可放行安装脚本。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image34_install_opencode_ai.png" alt="安装 opencode-ai"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 34  安装 opencode-ai</div>
+
+装完后输入 `opencode --version`，能显示版本号（如 `1.18.29`）即安装成功。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image35_check_opencode_version.png" alt="查看 opencode 版本"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 35  opencode --version 显示版本号</div>
+
+#### 8.2 创建配置目录并安装兼容 SDK
+
+OpenCode 的配置文件位于用户目录下的 `~/.config/opencode`（Windows 上即 `C:\Users\<你的用户名>\.config\opencode`），初次安装该目录可能不存在，需要手动创建。同时，由于 OpenCode 调用大模型依赖 OpenAI 兼容协议，还需要在配置目录内安装对应的 SDK 包：
+
+```bash
+mkdir "%USERPROFILE%\.config\opencode"
+cd /d "%USERPROFILE%\.config\opencode"
+npm install @ai-sdk/openai-compatible
+```
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image36_create_config_dir_install_sdk.png" alt="创建配置目录并安装 SDK"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 36  创建配置目录并安装 @ai-sdk/openai-compatible</div>
+
+#### 8.3 编辑 opencode.json 配置文件
+
+在 `~/.config/opencode` 目录下新建 `opencode.json`，按以下结构填写（`baseURL` 与 `apiKey` 替换为管理员实际提供的值）：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "router/deepseek-v4-flash",
+  "provider": {
+    "router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "1Router 网关",
+      "options": {
+        "baseURL": "https://1router.1panel.cn/v1",
+        "apiKey": "sk-你的APIKey"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash"
+        }
+      }
+    }
+  }
+}
+```
+
+四个要点：
+
+- **provider 的 npm**：固定填 `@ai-sdk/openai-compatible`（即上一步安装的 SDK）
+- **baseURL**：网关接口地址，末尾 `/v1` 不可省略
+- **apiKey**：网关管理端创建的 API Key
+- **model 字段**：格式为 `<provider名>/<模型标识>`，需与网关开通的模型名称完全一致
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image37_edit_opencode_json_config.png" alt="编辑 opencode.json 配置"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 37  在 opencode.json 中填写网关地址、API Key 与模型</div>
+
+保存后即可关闭编辑器。
+
+#### 8.4 启动 OpenCode
+
+在任意终端输入 `opencode` 并按回车启动。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image38_run_opencode_command.png" alt="启动 opencode"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 38  在终端执行 opencode 启动</div>
+
+首次启动会进入 OpenCode 主界面：界面中央显示 ASCII 风格的 `opencode` 标志，下方是带提示语的输入框，左下角显示当前工作目录（如 `~\.config\opencode`），右下角显示 OpenCode 版本号，底部状态栏会列出可用的 Provider 与模型（如 `Build DeepSeek V4 Flash 1Router 网关`），表示配置已生效。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image39_opencode_main_ui.png" alt="opencode 主界面"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 39  OpenCode 主界面（底部状态栏显示 1Router 网关与已配置模型）</div>
+
+:::note[常见踩坑]
+
+- 启动后若底部状态栏没有出现 `1Router 网关`，说明 `opencode.json` 没有被识别：检查文件是否放在 `~/.config/opencode/opencode.json`（不是 `~/.opencode`），并确认 JSON 语法没有多余的逗号或引号。
+- 若提示 `provider not found`，通常是 `npm install @ai-sdk/openai-compatible` 这一步没有执行成功，重新在该目录下执行安装命令即可。
+
+:::
+
+#### 8.5 发起测试对话
+
+在底部输入框中发送一条简单消息（如"你好请用一句话介绍你自己"），等待模型返回。若能正常收到回复，且右上角 Context 区域显示 `Context`、`Tokens`、`$0.00 spent` 等统计信息，状态栏仍显示 `Build DeepSeek V4 Flash 1Router 网关`，说明 OpenCode → 1Panel AI 网关 → 上游模型链路已经打通。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image40_opencode_test_chat_success.png" alt="opencode 测试对话"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
+
+
+### 9 常见问题排查（FAQ）
 
 配置完成后测试如果不通，按下面的对照表排查，基本都能解决：
 
 | 报错现象                        | 大概率原因                                                    | 解决办法                                            |
 | --------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
-| 401 / 403                   | API Key 无效、复制不完整（少了开头或结尾字符）、已过期                          | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格                  |
+| 401 / 403                   | API Key 无效、复制不完整（少了开头或结尾字符）、已过期                         | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格                  |
 | 404                         | 接口地址或模型名称填错                                              | 检查 Base URL 末尾是否有 `/v1`；模型名称与管理员开通的是否一字不差       |
 | 连接超时 / 无法访问                 | 网络不通、地址不对                                                | 换个浏览器访问 Base URL 确认可达；确认电脑没有开启拦截流量的代理软件         |
 | 能连通但没有回复 / 模型列表为空           | 该模型未分配给你的账号                                              | 联系管理员确认模型已加入你的用户组                               |
 | Claude Code 报错连不上 / 走的是官方接口 | CC Switch 供应商未启用，或上游格式未选「OpenAI Chat Completions（需开启路由）」 | 回到 CC Switch 确认网关供应商处于「启用」状态，并在高级选项中检查上游格式与模型映射 |
+| OpenCode 启动后状态栏未显示网关         | opencode.json 路径不对、SDK 未安装成功或 JSON 语法错误                  | 确认文件位于 `~/.config/opencode/opencode.json`；在该目录下重新执行 `npm install @ai-sdk/openai-compatible`；用 JSON 校验工具检查语法 |
