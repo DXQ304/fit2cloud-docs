@@ -16,6 +16,7 @@ const PRODUCT_NAMES = {
   dataease: 'DataEase',
   maxkb: 'MaxKB',
   'ai-gateway': '1Panel AI 网关',
+  sqlbot: 'SQLBot',
 };
 
 const formatter = (params) => {
