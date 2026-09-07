@@ -44,7 +44,7 @@ title: 接入第三方
 
 WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击安装包、像装普通软件一样下一步到底即可。
 
-- **官方下载页**：<https://www.workbuddy.cn/>（打开网页后点击页面上的"立即下载"，按自己的电脑系统选择：Windows 选 **Windows x64**；Mac 电脑按芯片选 **Apple 芯片（M 系列）** 或 **Intel** 版本）
+- **官方下载页**：https://www.workbuddy.cn/（打开网页后点击页面上的"立即下载"，按自己的电脑系统选择：Windows 选 **Windows x64**；Mac 电脑按芯片选 **Apple 芯片（M 系列）** 或 **Intel** 版本）
 
 :::tip[温馨提示]
 
@@ -58,7 +58,7 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 点击配置自定义模型：在客户端设置中找到「自定义模型」或「添加模型」入口。
 
-<img style={{display:"block", margin:"16px auto", maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型" />
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型"/>
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 4  配置自定义模型</div>
 
@@ -101,7 +101,7 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下载一个安装包"这么简单，需要先了解一下两种官方安装方式，任选其一：
 
-- **方式一：命令行快速启动（推荐）**。先安装 Node.js（去官网 <https://nodejs.org/> 下载 LTS 版本，一路下一步安装即可），然后在终端（Windows 打开 PowerShell，Mac 打开"终端"）里输入下面这行命令回车，等待启动完成：
+- **方式一：命令行快速启动（推荐）**。先安装 Node.js（去官网 https://nodejs.org/ 下载 LTS 版本，一路下一步安装即可），然后在终端（Windows 打开 PowerShell，Mac 打开"终端"）里输入下面这行命令回车，等待启动完成：
   ```bash
   npx @deepseek-ai/dsh web
   ```
@@ -111,7 +111,7 @@ DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下
   git clone https://github.com/deepseek-ai/deepseek-harness
   ```
   然后按照仓库里的说明完成安装。
-- **官方渠道入口**：官网 <https://www.deepseek.com>（DeepSeek 官网首页可找到 Harness 相关入口）；GitHub 仓库 <https://github.com/deepseek-ai/deepseek-harness>。
+- **官方渠道入口**：官网 https://www.deepseek.com（DeepSeek 官网首页可找到 Harness 相关入口）；GitHub 仓库 https://github.com/deepseek-ai/deepseek-harness。
 
 :::warning[认准官方渠道]
 
@@ -150,11 +150,11 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 
 ### 4 接入 codex
 
-#### 4.1 下载并安装 Codex（Codex CLI）
+#### 4.1 下载并安装 codex（Codex CLI）
 
 Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在命令行（终端）里敲 `codex` 命令使用。安装分两步：
 
-第一步，安装 Node.js（版本建议 22 及以上）。去 Node.js 官网 <https://nodejs.org/> 下载 LTS 版本，安装时保持默认选项即可。装完打开终端输入 `node -v`，能显示版本号就说明装好了。
+第一步，安装 Node.js（版本建议 22 及以上）。去 Node.js 官网 https://nodejs.org/ 下载 LTS 版本，安装时保持默认选项即可。装完打开终端输入 `node -v`，能显示版本号就说明装好了。
 
 第二步，安装 Codex CLI。打开终端（Windows 用 PowerShell，Mac 用"终端"），输入：
 
@@ -167,17 +167,17 @@ npm install -g @openai/codex
 - 包名必须是 `@openai/codex`，注意前面有 `@openai/`，不要只输 `codex`，那是一个不相关的旧包。
 - 如果下载很慢或超时，可以先换国内镜像源再装：`npm config set registry https://registry.npmmirror.com`
 
-  :::
+:::
 
 安装完输入 `codex --version`，能显示版本号即成功。
 
-- **官方仓库**：<https://github.com/openai/codex>（也可从仓库的 Releases 页下载免 Node.js 的预编译版本）
+- **官方仓库**：https://github.com/openai/codex（也可从仓库的 Releases 页下载免 Node.js 的预编译版本）
 
 #### 4.2 CC Switch 配置
 
 Codex CLI 本身不提供可视化的供应商管理界面，直接修改 `~/.codex/config.toml` 的方式门槛较高。这里借助 CC Switch 这一小工具完成配置：它负责管理 Codex 的供应商配置，并把请求路由到 1Panel AI 网关，无需手工编辑配置文件。
 
-CC Switch 下载地址（GitHub Releases 发布页）：<https://github.com/farion1231/cc-switch/releases/latest>
+CC Switch 下载地址（GitHub Releases 发布页）：https://github.com/farion1231/cc-switch/releases/latest
 
 - Windows：下载 `CC-Switch-vX.X.X-Windows.msi` 安装包，双击按向导安装
 - macOS：下载 `CC-Switch-vX.X.X-macOS.zip`，解压后把应用拖入"应用程序"文件夹（首次打开若提示"未知开发者"，前往「系统设置 → 隐私与安全性」点击「仍要打开」）
@@ -226,7 +226,7 @@ CC Switch 下载地址（GitHub Releases 发布页）：<https://github.com/fari
 
 Claude Code 是 Anthropic 推出的终端编程助手（与 codex 类似，在命令行里敲 `claude` 命令使用），支持 Windows、macOS 和 Linux。
 
-打开官方文档页 <https://docs.anthropic.com/en/docs/claude-code/getting-started>，按自己电脑的系统选择安装方式：
+打开官方文档页 https://docs.anthropic.com/en/docs/claude-code/getting-started，按自己电脑的系统选择安装方式：
 
 - **Windows**：在 PowerShell 里执行官方安装命令（也可先安装 Node.js 22 及以上，再执行 `npm install -g @anthropic-ai/claude-code`）
 - **macOS / Linux**：在终端执行官方安装命令
@@ -288,7 +288,7 @@ Claude Code 本身没有可视化配置界面，这里与 codex 一样借助 CC 
 
 #### 6.1 下载并安装 Cursor
 
-Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"），支持 Windows、macOS 和 Linux。打开官网 <https://cursor.com/download>，点击「Download for Windows / Mac」下载安装包，双击安装即可，无需额外配置环境。
+Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"），支持 Windows、macOS 和 Linux。打开官网 https://cursor.com/download，点击「Download for Windows / Mac」下载安装包，双击安装即可，无需额外配置环境。
 
 #### 6.2 添加自定义模型
 
@@ -439,7 +439,7 @@ openclaw config validate
 - JSON 里字段名写错（如 `baseUrl` 写成 `base_url`）、`api` 值填错，都会导致校验报错「Invalid option」或「Unrecognized key」，按错误提示里给出的合法值修正即可。
 - 不要用 `openclaw config set auth.openai.baseURL ...` 来配置网关——该键位校验会失败，正确做法就是用上面的方式一或方式二写入 `models.providers`。
     
-  :::
+:::
 
 #### 7.4 启动网关并测试对话
 
