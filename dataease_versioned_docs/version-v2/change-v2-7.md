@@ -79,7 +79,7 @@ title: v2.7.0
 ### 1.16 新增视频组件
 :::note
 
-不能上传本地视频，需要填写视频链接信息。如果需要搭建视频服务器可参考知识库：https://kb.fit2cloud.com/?p=0e763f1d-a175-49e0-ac69-af8d39fb789b、https://kb.fit2cloud.com/?p=15 。
+不能上传本地视频，需要填写视频链接信息。如果需要搭建视频服务器可参考知识库：[https://kb.fit2cloud.com/?p=0e763f1d-a175-49e0-ac69-af8d39fb789b](https://kb.fit2cloud.com/?p=0e763f1d-a175-49e0-ac69-af8d39fb789b)、[https://kb.fit2cloud.com/?p=15](https://kb.fit2cloud.com/?p=15) 。
 :::
 <img alt="更新1" src="/img/dataease-v2/newimg/1.16%20新增视频组件.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
 

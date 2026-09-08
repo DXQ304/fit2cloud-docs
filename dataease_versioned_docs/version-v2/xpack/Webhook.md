@@ -32,7 +32,7 @@ Webhook 是组织级别的内容，以便于统一管理和扩展消息推送，
 
 :::note
 
-企业微信文本消息模板可参考如下格式，官方说明请参考 [企业微信群机器人配置说明](https://developer.work.weixin.qq.com/document/path/91770)\{ target="_blank" rel="noopener" \}。
+企业微信文本消息模板可参考如下格式，官方说明请参考 [企业微信群机器人配置说明](https://developer.work.weixin.qq.com/document/path/91770)。
 :::
 
 ```json
@@ -48,7 +48,7 @@ Webhook 是组织级别的内容，以便于统一管理和扩展消息推送，
 
 :::note
 
-钉钉文本消息模板可参考如下格式，官方说明请参考 [钉钉机器人消息类型](https://open.dingtalk.com/document/development/robot-message-type)\{ target="_blank" rel="noopener" \}。
+钉钉文本消息模板可参考如下格式，官方说明请参考 [钉钉机器人消息类型](https://open.dingtalk.com/document/development/robot-message-type)。
 :::
 
 ```json
@@ -64,7 +64,7 @@ Webhook 是组织级别的内容，以便于统一管理和扩展消息推送，
 
 :::note
 
-飞书文本消息模板可参考如下格式，官方说明请参考 [飞书自定义机器人使用指南](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN)\{ target="_blank" rel="noopener" \}。
+飞书文本消息模板可参考如下格式，官方说明请参考 [飞书自定义机器人使用指南](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN)。
 :::
 
 ```json

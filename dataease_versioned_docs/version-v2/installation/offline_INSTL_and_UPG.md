@@ -165,7 +165,7 @@ CREATE DATABASE `dataease` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai
 :::note
 
 安装成功后，通过浏览器访问如下页面登录：  
-- **访问地址** : http://目标服务器IP地址:服务运行端口  
+- **访问地址** : `http://目标服务器IP地址:服务运行端口`  
 - **登录用户名**: admin  
 - **登录密码**: DataEase@123456
 :::
