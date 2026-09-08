@@ -49,7 +49,11 @@ const config = {
 
   // 客户端模块: 路由更新时给 <html data-docs-product> 打上当前产品标记,
   // 供 custom.css 按产品定制文档页样式(见 src/clientModules/docsProduct.js)。
-  clientModules: ['./src/clientModules/docsProduct.js'],
+  // navbarSticky: 滚动时切换导航栏贴顶(见 src/clientModules/navbarSticky.js)。
+  clientModules: [
+    './src/clientModules/docsProduct.js',
+    './src/clientModules/navbarSticky.js',
+  ],
 
   url: 'https://docs.fit2cloud.com',
   baseUrl: '/',

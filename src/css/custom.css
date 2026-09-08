@@ -298,13 +298,17 @@ aside.theme-doc-sidebar-container {
     flex: 0 0 360px;
     max-width: 360px;
   }
-  /* 侧栏固定: 强制 sticky 吸在顶部, 滚动页面时侧栏不跟着内容上移;
-     高度按内容自适应(菜单长时内部滚动), 水平居中于左栏 */
+  /* 侧栏固定: 让侧边栏(Viewport)吸附在顶部导航栏下方, 滚动页面/内容时侧边栏保持不动。
+     关键点: sticky 元素的吸附范围受父容器高度限制, 而 aside 会被拉伸到与整行内容同高,
+     若 Viewport 高度自适应, 它会在很长一段滚动范围内「跟着内容跑」, 看起来不固定。
+     因此必须把 Viewport 高度锁定为固定视口高度(减掉顶栏)，sticky 才能稳定吸住。
+     - top: 与 navbar 吸顶后的底边对齐 (navbar top 32px + 高70px = 102px), 避免滚动时
+       Viewport 盖到顶部导航栏上。
+     - height: 100vh - 102px, 占满顶栏下方剩余视口; 菜单过长时内部滚动(overflow-y)。 */
   aside.theme-doc-sidebar-container > div {
     position: sticky !important;
-    top: 0 !important;
-    height: auto !important; /* 关键: 去掉 100%, 否则侧栏高度=内容高, 会随页面滚动走 */
-    max-height: calc(100vh - var(--ifm-navbar-height)) !important;
+    top: calc(var(--ifm-navbar-height) + 2px) !important; /* = 72px, 继续上探接近 navbar 底边 */
+    height: calc(100vh - var(--ifm-navbar-height) - 2px) !important;
     overflow-y: auto !important;
     display: flex;
     justify-content: center;
@@ -439,6 +443,9 @@ aside.theme-doc-sidebar-container {
    说明: 首页 Hero 自带浅蓝渐变背景, 白色悬浮卡会自然浮在浅蓝之上, 与设计稿一致。 */
 /* Infima 的 .navbar--fixed-top 是 left:0;right:0 满宽 fixed。
    用 margin auto 居中 + 限宽, 不能用 left:50%+translateX(会与 right:0 冲突导致错位) */
+/* 导航栏滚动行为(配合 src/clientModules/navbarSticky.js):
+   - 默认(页面未滚动, html 无 .navbar-scrolled): 顶部留 12px margin 悬浮下移;
+   - 滚动后(html.navbar-scrolled): top:0、顶部 margin 归零, 贴到视口最顶。 */
 .navbar {
   top: 12px;
   right: 0;
@@ -452,6 +459,10 @@ aside.theme-doc-sidebar-container {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   background-color: #ffffff !important;
   border: 1px solid rgba(228, 232, 240, 0.9);
+}
+html.navbar-scrolled .navbar {
+  top: 0;
+  margin-top: 0;
 }
 .navbar__inner {
   max-width: 100%;
@@ -510,5 +521,8 @@ body.home-page {
     top: 8px;
     width: calc(100% - 24px);
     border-radius: 10px;
+  }
+  html.navbar-scrolled .navbar {
+    top: 0;
   }
 }
