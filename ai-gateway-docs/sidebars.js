@@ -56,6 +56,16 @@ const sidebars = {
 
     { type: "doc", id: "integrate_third_party", label: "接入第三方" },
 
+    // ── faq：常见问题 ──
+    {
+      type: "category",
+      label: "常见问题",
+      collapsed: false,
+      items: [
+        { type: "doc", id: "faq/reset-admin-password", label: "重置管理员密码" },
+      ],
+    },
+
     { type: "doc", id: "contact", label: "联系我们" },
   ],
 };

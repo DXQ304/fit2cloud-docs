@@ -17,7 +17,7 @@ docker pull 1panel/ai-gateway
 镜像拉取完成后，以 SQLite 单机模式启动：
 
 ```bash
-docker run -d \
+docker run --pull always -d \
   --name 1panel-ai-gateway \
   --restart unless-stopped \
   -p 8080:8080 \
@@ -49,19 +49,31 @@ docker pull 1panel/ai-gateway
 
 2. 启动软件。空数据库会创建名为 Default 的默认用户组和唯一管理员。
 
-3. 若未显式指定管理员密码，在本次启动日志中查找 `initial administrator created` 记录，复制一次性临时密码。
+3. 若未显式指定管理员密码，可在本次启动日志中查找 `initial administrator created` 记录，复制一次性临时密码：
+
+```bash
+docker logs 1panel-ai-gateway 2>&1 | grep "initial administrator created"
+```
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image4_find_initial_admin_password.png" alt="查找初始管理员密码"/>
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 4  查找初始管理员密码</div>
 
 4. 使用管理员用户名 `admin` 和临时密码登录；系统将强制跳转到密码修改页。
 
-5. 设置 12 至 128 字节的新密码后进入管理端，立即配置上游账号与模型组。
+5. 设置 6 至 128 个字符的新密码后进入管理端，立即配置上游账号与模型组。
 
 <img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image5_admin_login.png" alt="管理员登录"/>
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 5  管理员登录</div>
 
 首次密码：通过 `AI_GATEWAY_INITIAL_ADMIN_PASSWORD` 显式传入的密码不会写入日志；无论采用哪种方式，数据库只保存 Argon2id 强哈希。首次初始化完成后，重启不会覆盖已有管理员。
+
+忘记密码：自 v1.0.1 版本起，支持 `reset-admin-password` 命令重置管理员密码。在部署服务器上执行以下命令，按终端提示输入新密码并确认即可：
+
+```bash
+docker exec -it 1panel-ai-gateway /usr/bin/ai-gateway reset-admin-password
+```
+
+详细操作请参见[重置管理员密码](../faq/reset-admin-password.md)。
 
 ### 4 健康检查
 
