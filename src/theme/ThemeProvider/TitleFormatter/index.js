@@ -5,7 +5,7 @@
  * 其它页面(首页/门户说明等)沿用 Docusaurus 默认格式「页面标题 | 站点标题」。
  *
  * 产品名的来源: docusaurus.config.js plugins 里各产品文档实例声明的 id
- * (1panel / jumpserver / dataease / maxkb / ai-gateway), 此处据此映射出中文产品名。
+ * (1panel / jumpserver / dataease / maxkb / ai-gateway / sqlbot / cordys), 此处据此映射出中文产品名。
  */
 import React from 'react';
 import {TitleFormatterProvider} from '@docusaurus/theme-common/internal';
@@ -17,6 +17,7 @@ const PRODUCT_NAMES = {
   maxkb: 'MaxKB',
   'ai-gateway': '1Panel AI 网关',
   sqlbot: 'SQLBot',
+  cordys: 'Cordys CRM',
 };
 
 const formatter = (params) => {
