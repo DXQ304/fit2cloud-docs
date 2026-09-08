@@ -31,7 +31,6 @@ const config = {
 
   // 各产品图片自包含: 图片放在各自产品目录的 static/ 里, 统一平铺映射到 /（URL 保持 /img/<ns>/...）
   // 注意: 'static'(门户自身, favicon/social-card/undraw)必须放在第一位, 避免同路径被产品目录覆盖。
-<<<<<<< HEAD
   // 1Panel / SQLBot / DataEase / MaxKB 已按自包含架构迁移; jumpserver 当前为占位或预留。
   staticDirectories: [
     'static',
