@@ -38,6 +38,7 @@ const config = {
     '1panel_versioned_docs/version-v1/static',
     'sqlbot-docs/static',
     'maxkb-docs/static',
+    'maxkb_versioned_docs/version-v1/static',
     // 以下为预留(当前无图片, 建立后自动生效)
     'dataease-docs/static',
     'ai-gateway-docs/static',
@@ -153,10 +154,11 @@ const config = {
         path: 'maxkb-docs',
         routeBasePath: 'maxkb',
         sidebarPath: 'maxkb-docs/sidebars.js',
-        // 版本化: current = v2, 暂无历史版本(后续出新版用 docs:version:maxkb v2 快照)
+        // 版本化: current(maxkb-docs) = v2, 历史版本 v1（与 JumpServer v3 / 1Panel v1 同结构）
         lastVersion: 'current',
         versions: {
           current: { label: 'v2', badge: false, banner: 'none' },
+          v1: { label: 'v1', badge: false, banner: 'none' },
         },
       },
     ],
