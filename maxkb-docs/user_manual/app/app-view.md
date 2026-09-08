@@ -1,0 +1,85 @@
+---
+title: 智能体概览
+---
+
+:::note
+
+创建完智能体，进入在概览页面可以进行启用/禁用/重新生成公开访问链接、演示、嵌入第三方、访问限制以及 API Key 管理。
+:::
+
+![智能体概览](/img/maxkb/app/overview.png)
+
+## 1 公开访问链接
+
+:::note
+
+公开访问链接支持开关设置和重新生成。点击演示或复制公开访问链接至浏览器进入问答页面。
+:::
+
+![问答](/img/maxkb/app/QA.png)
+![问答](/img/maxkb/app/QA_asker.png)
+
+:::note
+
+在问答后，可以点击右上角的导出按钮，可以选择将当前的对话记录导出为 Markdown、HTML 和 PDF 文件。
+:::
+![问答](/img/maxkb/app/QA_down.png)
+
+:::note
+
+当选择导出为 PDF 时，支持选择导出为 PDF 或图片。
+:::
+![问答](/img/maxkb/app/QA_down1.png)
+
+:::note
+
+支持复制、换个答案、赞同、反对和分享聊天记录。
+:::
+
+![问答分享](/img/maxkb/app/QA_share.png)
+
+:::note
+
+对于已打开的公开链接，如果此时关闭当前公开链接或重新生成新的公开访问链接，此时访问将提示：抱歉，当前正在维护，无法提供服务，请稍后再试！
+:::
+
+![关闭服务](/img/maxkb/app/closed.png)
+
+## 2 嵌入第三方
+
+:::note
+
+MaxKB 智能体支持零编码嵌入到企业的第三方系统。     
+在智能体概览页面点击【嵌入第三方】，复制全屏模式、移动端模式或浮窗模式代码嵌入到第三方系统中，即可在第三方系统中进行问答。
+:::
+
+![嵌入第三方](/img/maxkb/app/embed.png)
+
+## 3 访问限制
+
+:::note
+
+MaxKB 支持对智能体设置每个客户端提问次数限制和嵌入第三方白名单防盗链设置。
+
+**注意**：身份验证为 X-Pack 功能。
+:::
+
+![访问限制](/img/maxkb/app/Accessrestrictions.png)
+
+## 4 显示设置
+
+:::note
+
+社区版本智能体支持语言以及显示执行详情的设置。X-Pack 功能更多设置，详情见：[智能体显示](../X-Pack/app_logo_settting)
+:::
+
+![访问限制](/img/maxkb/app/display_config.png)
+
+## 5 API 访问凭据
+
+:::note
+
+如果外部系统需要通过 API 的方式进行调用，需要查看 API 文档和当前智能体的 API Key，点击 【API Key 】，打开 API Key 的管理对话框，支持创建、启用/禁用、删除 API Key。
+:::
+
+![API key](/img/maxkb/app/app_apikey.png)

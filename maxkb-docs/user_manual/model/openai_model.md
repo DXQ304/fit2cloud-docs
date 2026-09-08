@@ -1,0 +1,54 @@
+---
+title: 对接OpenAI
+---
+
+## 1 添加模型
+
+:::note
+
+选择模型供应商为`OpenAI`，并在模型添加对话框中输入如下必要信息：
+
+* 模型名称： MaxKB 中自定义的模型名称。    
+* 模型类型： 大语言模型/向量模型/语音识别/语音合成/视觉模型/图片生成。   
+* 基础模型： 不同类型模型下的基础模型名称，下拉选项是常用的一些基础模型名称，支持自定义输入，但需要与 OpenAI 支持的模型名称保持一致，否则无法通过校验。
+* API 域名：国外 Open API 的域名是`https://api.openai.com/v1`，国内代理的 API 域名格式一般是`反向代理地址/v1`。
+* API Key：访问 OpenAI 的 Key。
+:::
+
+## 2 配置样例
+
+:::note
+
+OpenAI-大语言模型配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_llm.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+OpenAI-向量模型配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_embed.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+OpenAI-语音识别模型配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_asr.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+OpenAI-语音合成配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_tts.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+OpenAI-视觉模型配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_vision.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+OpenAI-图片生成模型配置样例图示：
+:::
+<img alt="OpenAI 模型" src="/img/maxkb/model/openai_verison_gen.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>

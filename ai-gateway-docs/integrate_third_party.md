@@ -569,7 +569,7 @@ npm install @ai-sdk/openai-compatible
 
 <img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image40_opencode_test_chat_success.png" alt="opencode 测试对话"/>
 
-<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}><div className="fig-cap" style={{textAlign:"center",color:#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
 
 
 ## 9 接入 Hermes Agent
