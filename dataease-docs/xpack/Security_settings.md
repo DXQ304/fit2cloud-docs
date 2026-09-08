@@ -1,0 +1,74 @@
+---
+title: 安全管理
+---
+
+## 1 全局设置
+
+:::note
+
+系统管理员可以在“系统设置 &gt; 安全设置”中配置多因素认证（MFA）。
+配置说明：
+
+- 全局启用 MFA 认证：可以选择启用或禁用全局 MFA 功能。
+- 第三方认证启用 MFA：设置三方登录方式（OIDC、CAS）是否开启 MFA 绑定。
+- MFA 校验有效期：设置 MFA 校验码的有效时间（单位：秒），默认值为 30 秒。
+- OTP 延迟有效次数：设置用户 OTP 验证的允许失败次数。
+- 扫描名称配置：可自定义用户扫描绑定 MFA 时的名称显示。
+:::
+<img alt="更新1" src="/img/dataease/newimg/4.1新增MFA支持1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+在系统设置中，系统管理员可以配置全局 MFA 设置，用于控制 MFA 的强制生效范围。
+
+- 未启用：不强制使用 MFA，但用户可根据自身需要自行开启 MFA。
+- 所有用户：所有用户登录时必须使用 MFA（钉钉等第三方平台扫码方式除外，以及第三方认证开启默认不开启MFA）。
+- 仅系统管理员：仅强制 admin 用户使用 MFA。  
+
+**注意：若用户未绑定 MFA，但系统已启用 MFA，用户在常规登录后，进入 MFA 验证页面时将出现绑定页面，包含 App下载链接和用于扫码绑定 MFA。**
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/4.1新增MFA支持2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+HMAC 是第三方系统系统对接 DataEase API 的签名鉴权开关。
+
+- 启用 HMAC 认证：可以选择启用或禁用全局  HMAC 功能。
+- Secret Key：双方共用的密钥。
+- 时钟偏差：设置 HMAC 校验的时间容错，默认值为 300 秒。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/HMAC设置.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+## 2 用户绑定
+
+:::note
+
+用户绑定 MFA 操作流程：下载 MFA 应用 -&gt; 绑定 MFA 多因子认证 -&gt; 登陆后进行 MFA 多因子认证。
+
+**注意：钉钉等第三方平台扫码方式不需要进行 MFA 多因子认证，第三方认证登陆时默认不开启 MFA。**
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/4.1新增MFA支持2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+扫码下载 MFA 应用：
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/4.1%20新增%20MFA%20支持4.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+绑定 MFA 多因子认证：
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/4.1%20新增%20MFA%20支持5.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+用户绑定并开启 MFA 后，登陆后进行 MFA 多因子认证：
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/4.1%20新增%20MFA%20支持6.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>

@@ -103,7 +103,7 @@
 }
 
 /* 提示框：白底（对齐 1Panel 卡片式），去掉 Infima 的浅色底与阴影。
-   note(1Panel) → 品牌蓝左边框；tip/info(SQLBot 等) → 绿色左边框，避免绿/蓝混用。
+   note(1Panel / DataEase) → 品牌蓝左边框；tip/info(SQLBot) → 绿色左边框。
    Infima 在 @layer 里还会覆盖 CSS 变量，所以 background-color 加 !important。 */
 .alert--secondary,
 .alert--success,

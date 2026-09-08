@@ -1,0 +1,71 @@
+---
+title: 工具箱
+---
+
+<img alt="百宝箱入口" src="/img/dataease/system_management/百宝箱.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+##  1 模板管理
+
+### 1.1 新建模板分类
+
+:::note
+
+用户可以在创建仪表板的时候，通过选择已有的模板，快速创建所需的仪表板和数据大屏，减少创建可视化图表的工作量。  
+可以通过点击【添加分类】按钮，给模板新建分类，为模板进行分组分类，可以更方便的对模板进行管理和查找。
+:::
+
+<img alt="模板管理界面" src="/img/dataease/system_management/模板管理界面.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+:::note
+
+- 支持批量修改模板分类。
+- 支持批量删除模板。
+:::
+<img alt="更新1" src="/img/dataease/newimg/v2-2-1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+### 1.2 添加样式模板
+
+:::note
+
+样式模板来源于仪表板、数据大屏的转换，可在仪表板、数据大屏预览界面"保存为样式模板"。如下图所示，也可点击【导入模板】，上传模板文件，添加模板。
+:::
+
+<img alt="导出为模板" src="/img/dataease/system_management/导出为模板.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+<img alt="上传模板" src="/img/dataease/system_management/上传模板.png" width="900" style={{maxWidth:'100%', height:'auto'}}/> 
+<img alt="模板导入成功" src="/img/dataease/system_management/模板导入成功.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+### 1.3 添加应用模板
+
+:::note
+
+仪表板和数据大屏支持以应用的形式进行导出。在 DataEase v3 中，应用作为模板的其中一种形式，和模板同时放在【模板管理】中管理。  
+**样式模板与应用模板的区别：**
+
+- 样式模板：更注重仪表板本身的样式设计布局等内容，DataEase 生成仪表板并附带示例数据，需要根据自己的数据情况自行手动创建数据源、数据集并将仪表板中的示例数据替换为自己的真实数据；
+- 应用模板：有一定的针对性，适用于应用系统的对接，例如 JumpServer 应用。DataEase 生成仪表板并同时生成其所对应的数据集，无需再手动替换图表数据。
+
+关于模板文件与应用文件的区别可参考：`https://kb.fit2cloud.com/?p=211`。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+:::note
+
+可在【模板管理】中上传应用模板。
+:::
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能3.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+:::note
+
+使用模板新建仪表板或数据大屏时可选择使用存在的应用文件。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能4.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能5.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+:::note
+
+使用应用创建的资源，会自动弹出相关配置项，需要用户进一步填写。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/5.1%20新增应用功能6.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
