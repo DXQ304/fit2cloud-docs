@@ -31,9 +31,7 @@ const config = {
 
   // 各产品图片自包含: 图片放在各自产品目录的 static/ 里, 统一平铺映射到 /（URL 保持 /img/<ns>/...）
   // 注意: 'static'(门户自身, favicon/social-card/undraw)必须放在第一位, 避免同路径被产品目录覆盖。
-  // 1Panel / SQLBot / JumpServer 已按自包含架构迁入; dataease/maxkb 当前为单 index.md 占位(无图片), 预留注册项(建立后自动生效)。
-  // - sqlbot: 已按自包含架构迁入, namespace=sqlbot。
-  // - jumpserver: 已按自包含架构迁入(v4 current + v3 历史版), namespace=jumpserver。
+  // 1Panel / SQLBot / JumpServer / DataEase / MaxKB / Cordys 已按自包含架构迁移。
   staticDirectories: [
     'static',
     '1panel-docs/static',
@@ -41,9 +39,11 @@ const config = {
     'sqlbot-docs/static',
     'jumpserver-docs/static',
     'jumpserver_versioned_docs/version-v3/static',
-    // 以下为预留(当前无图片, 建立后自动生效)
     'dataease-docs/static',
+    'dataease_versioned_docs/version-v2/static',
     'maxkb-docs/static',
+    'maxkb_versioned_docs/version-v1/static',
+    'cordys-docs/static',
     'ai-gateway-docs/static',
   ],
 
@@ -149,7 +149,7 @@ const config = {
         },
       },
     ],
-    // BI 分类：DataEase(模拟)
+    // DataEase 官方文档(从 MkDocs v3 迁移), namespace=dataease
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -157,9 +157,15 @@ const config = {
         path: 'dataease-docs',
         routeBasePath: 'dataease',
         sidebarPath: 'dataease-docs/sidebars.js',
+        // 版本化: current(dataease-docs) = v3, 历史版本 v2
+        lastVersion: 'current',
+        versions: {
+          current: { label: 'v3', badge: false, banner: 'none' },
+          v2: { label: 'v2', badge: false, banner: 'none' },
+        },
       },
     ],
-    // AI 分类：MaxKB(模拟)
+    // MaxKB 官方文档(从 MkDocs 迁移), namespace=maxkb；提示框主色复用 1Panel(:::note 蓝边)
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -167,6 +173,27 @@ const config = {
         path: 'maxkb-docs',
         routeBasePath: 'maxkb',
         sidebarPath: 'maxkb-docs/sidebars.js',
+        // 版本化: current(maxkb-docs) = v2, 历史版本 v1（与 JumpServer v3 / 1Panel v1 同结构）
+        lastVersion: 'current',
+        versions: {
+          current: { label: 'v2', badge: false, banner: 'none' },
+          v1: { label: 'v1', badge: false, banner: 'none' },
+        },
+      },
+    ],
+    // Cordys CRM 官方文档(从 MkDocs 迁移), namespace=cordys；提示框主色复用 1Panel(:::note 蓝边)
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'cordys',
+        path: 'cordys-docs',
+        routeBasePath: 'cordys',
+        sidebarPath: 'cordys-docs/sidebars.js',
+        // 版本化: current = v1, 暂无历史版本(后续出新版用 docs:version:cordys v1 快照)
+        lastVersion: 'current',
+        versions: {
+          current: { label: 'v1', badge: false, banner: 'none' },
+        },
       },
     ],
     // AI 分类：AI 网关(独立产品文档)

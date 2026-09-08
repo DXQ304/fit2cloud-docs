@@ -1,0 +1,56 @@
+---
+title: 对接腾讯混元
+---
+
+## 1 添加模型
+
+:::note
+
+添加腾讯混元大模型之前，需要先在腾讯云开通腾讯混元服务并新建秘钥。
+
+选择模型供应商为`腾讯混元`，并在模型添加对话框中输入如下必要信息：
+
+* 模型名称：MaxKB 中自定义的模型名称。     
+* 模型类型：大语言模型/向量模型/语音识别/视觉模型/图片生成。   
+* 基础模型：不同类型模型下的基础模型名称，下拉选项是常用的一些基础模型名称，支持自定义输入。         
+* APPID：【腾讯云-控制台-访问管理-API 密钥管理】中获取。 
+* SecretId：【腾讯云-控制台-访问管理-API 密钥管理】中获取。
+* SecretKey：【腾讯云-控制台-访问管理-API 密钥管理】新建密钥时下载的 SecretKey。
+:::
+
+![tencent apikey](/img/maxkb/model/tencent_apikey.png)
+
+## 2 配置样例
+
+:::note
+
+腾讯混元-大语言模型配置样例图示如下：
+:::
+
+<img alt="hunyuan 大语言模型" src="/img/maxkb/model/hunyuan_LLM.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+腾讯混元-向量模型配置样例图示如下：
+:::
+<img alt="hunyuan 向量模型" src="/img/maxkb/model/hunyuan_embed.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+腾讯混元-语音识别配置样例图示如下：
+:::
+<img alt="hunyuan 向量模型" src="/img/maxkb/model/hunyuan_asr.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+腾讯混元-视觉模型模型配置样例图示如下：
+:::
+<img alt="hunyuan 视觉模型模型" src="/img/maxkb/model/hunyuan_vision.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+腾讯混元-图片生成模型默认图像尺寸为 768 * 768，图片数量 1 张，风格为201，即日系动漫风格，默认配置样例图示如下：
+:::
+<img alt="hunyuan 图片生成模型" src="/img/maxkb/model/hunyuan_vision_gen1.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="hunyuan 图片生成模型" src="/img/maxkb/model/hunyuan_vision_gen2.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>

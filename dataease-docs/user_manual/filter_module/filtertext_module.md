@@ -1,0 +1,100 @@
+---
+title: 文本查询组件
+---
+
+## 1 文本下拉组件
+
+:::note
+
+可通过与图表的文本型字段绑定，点击文本下拉组件，即弹出下拉选项框，选定下拉框内的文本，点击【查询】按钮，过滤图表的数据。
+:::
+
+<img alt="文本下拉组件入口" src="/img/dataease/dashboard_generation/2.0设置文本下拉过滤.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>  
+<img alt="仪表盘编辑_查询组件" src="/img/dataease/dashboard_generation/2.0文本下拉过滤结果.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+文本下拉和数字下拉查询组件支持设置显示字段和排序字段
+
+- 前提条件：选项值来源选择【选择数据集】。
+- 查询字段：用作后台查询条件。
+- 显示字段：用作前端显示内容。
+- 排序字段：影响前端展示的排序顺序。
+:::
+<img alt="更新1" src="/img/dataease/newimg/文本下拉和数字下拉查询组件支持设置显示字段和排序字段.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+查询组件中的展示形式选项支持下拉展示和平铺展示两种选择。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/展示形式.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/下拉展示和平铺展示.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+查询组件中的文本下拉选项支持全部和默认两种选择。
+
+- 默认：如果未设置显示和排序字段，或者这两个字段与查询字段相同，则获取 1000 个选项进行过滤；当显示和排序字段与查询字段不同时，无论是默认下拉选项还是动态查询选项，都获取 1000 条数据进行过滤。
+- 全部：对所有数据进行查询并返回，在数据量大的情况下，可能会存在性能问题，如等待时间长，加载慢，甚至浏览器内存不足，故使用时需注意。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件中的文本下拉选项支持全部和默认两种选择.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+当显示字段与排序字段相同时，文本下拉和数值下拉支持选择自定义排序规则。且勾选后，下拉查询组件的默认值选项将按照自定义排序显示。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持自定义排序1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持自定义排序2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持自定义排序3.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+## 2 文本搜索组件
+
+:::note
+
+- 条件类型：单条件、与条件、或条件
+- 搜索模式：精确匹配、模糊匹配
+:::
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持设置文本搜索1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+<img alt="更新1" src="/img/dataease/newimg/1.12%20查询组件支持设置文本搜索2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+查询组件支持配置外部显示或隐藏精确匹配和模糊匹配。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持配置外部显示或隐藏精确匹配和模糊匹配图片.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+查询组件支持文本搜索时按回车键触发查询。
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件支持文本搜索时按回车键触发查询.gif" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+## 3 下拉树组件
+
+:::note
+
+下拉树组件允许用户在多级分类中逐级选择，如图所示，组件结构设计为“省份-城市-区县”三级分类。
+:::
+<img alt="更新1" src="/img/dataease/newimg/1.21%20查询组件支持下拉树.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+<img alt="更新1" src="/img/dataease/newimg/1.21%20查询组件支持下拉树2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+下拉树支持选择数据集并配置图表关联。在添加下拉树层级时，系统将自动关联同一数据集下图表的对应字段。
+
+- 点击【关联图表】或左侧层级字段，可进一步配置各层级与图表字段的关联关系。
+- 支持按需为图表组件仅关联某一特定层级。例如，下图中“明细表-不同数据集”图表仅在第二层级（区域）关联了“地区”字段。  
+**注意：切换下拉树类型时，已配置的层级信息将被清空，请谨慎操作。**
+:::
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件下拉树支持选择数据集并配置图表关联1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+
+<img alt="更新1" src="/img/dataease/newimg/查询组件下拉树支持选择数据集并配置图表关联2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+

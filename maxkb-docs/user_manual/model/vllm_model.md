@@ -1,0 +1,53 @@
+---
+title: 对接vLLM
+---
+
+## 1 添加模型
+
+:::note
+
+选择模型供应商为`vLLM`，并在模型添加对话框中输入如下必要信息：
+
+* 模型名称：MaxKB 中自定义的模型名称。
+* 模型类型：大语言模型/向量模型/语音识别模型/视觉模型/重排模型。   
+* 基础模型：不同类型模型下的基础模型名称，下拉选项是常用的一些基础模型名称，支持自定义输入。      
+* API 域名：vLLM 服务地址， 如：http://192.168.20.242:8000/v1 。 
+* API Key：若没有 API Key，输入任意字符即可。
+:::
+
+## 2 配置样例
+
+:::note
+
+vLLM-大语言模型配置样例图示如下：
+:::
+
+<img alt="vLLM LLM模型" src="/img/maxkb/model/vLLM_llm.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+vLLM-向量模型配置样例图示如下：
+:::
+
+<img alt="vLLM 向量模型" src="/img/maxkb/model/vllm_embedding.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+vLLM-语音识别模型配置样例图示如下：
+:::
+
+<img alt="vLLM 语音模型" src="/img/maxkb/model/vllm_asr.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+vLLM-视觉模型配置样例图示如下：
+:::
+
+<img alt="vLLM 视觉模型" src="/img/maxkb/model/vllm_version_gen.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
+
+:::note
+
+vLLM-重排模型配置样例图示如下：
+:::
+
+<img alt="vLLM 重排模型" src="/img/maxkb/model/vllm_reranker.png" width="500" style={{maxWidth:'100%', height:'auto'}}/>
