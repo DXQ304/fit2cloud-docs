@@ -93,9 +93,51 @@ description: 介绍 1Panel AI 网关账号池，包括添加上游账号、供�
 - **删除**：单击删除并确认后，账号及其模型映射将被移除。若账号正被向量服务等功能引用，则不能直接删除。
 - **筛选**：可按供应商、协议类型、具体协议、状态和关键字筛选，并选择显示模型、优先级、最大并发等列。
 
-## 3 账号对接
+## 3 对接账号
 
-### 3.1 对接DeepSeek
+### 3.1 对接本地 vLLM
+
+**步骤1 添加账号**
+
+- **供应商**：选择 `vLLM`。
+- **协议类型**：文本 / 文生图 / 向量 。
+- **名称**：设置账号显示名称，如 `本地-vllm`。
+- **服务地址**：填写本地 vLLM 服务的访问地址，如 `http://192.168.20.242:8000/v1`。
+- **API Key**：若本地服务未启用鉴权，无 API Key 则输入任意字符即可。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：可点击 **发现模型** 拉取本地已加载的模型列表快速补全。
+- **测试模型**：选择一个模型用于保存时验证。
+
+**步骤2 配置样例**
+
+本地 vLLM 文本模型配置方式如下图所示。向量模型、文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image8_local_vllm_configuration_example.png" alt="本地 vLLM 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 8 本地 vLLM 配置样例</div>
+
+### 3.2 对接本地 Ollama
+
+**步骤1 添加账号**
+
+- **供应商**：选择 `Ollama`。
+- **协议类型**：文本 / 文生图 / 向量 。
+- **名称**：设置账号显示名称，如 `本地-ollama`。
+- **服务地址**：填写本地 vLLM 服务的访问地址，如 `http://192.168.20.242:8000/v1`。
+- **API Key**：若本地服务未启用鉴权，无 API Key 则输入任意字符即可。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：可点击 **发现模型** 拉取本地已加载的模型列表快速补全。
+- **测试模型**：选择一个模型用于保存时验证。
+
+**步骤2 配置样例**
+
+本地 Ollama 文本模型配置方式如下图所示。向量模型、文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image9_local_ollama_configuration_example.png" alt="本地 Ollama 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 9 本地 Ollama 配置样例</div>
+
+### 3.3 对接DeepSeek
 
 **步骤1 添加账号**
 
@@ -106,23 +148,23 @@ description: 介绍 1Panel AI 网关账号池，包括添加上游账号、供�
 - **供应商**：选择 `DeepSeek`。选定后，系统会自动确定并展示 DeepSeek 支持的协议，账号自动归属「文本」类型，无需手动选择协议类型。
 - **名称**：设置便于识别的名称（如 `DeepSeek`），用于在账号池中区分不同账号。
 - **API Key**：填写 DeepSeek 开放平台创建的访问密钥。
-- **支持协议**：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
 - **模型映射**：将请求模型名对应到 DeepSeek 上游模型名，如 `deepseek-chat → deepseek-v4-pro`。
 - **测试模型**：选择一个模型用于保存时验证，如 `deepseek-v4-flash`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image8_obtain_deepseek_api_key.png" alt="获取 DeepSeek API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image10_obtain_deepseek_api_key.png" alt="获取 DeepSeek API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 8  获取 DeepSeek API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  获取 DeepSeek API Key</div>
 
 **步骤2 配置样例**
 
 DeepSeek 账号的配置方式如下图所示。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image9_DeepSeek_configuration_example.png" alt="DeepSeek 配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image11_DeepSeek_configuration_example.png" alt="DeepSeek 配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 9  DeepSeek 配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 11  DeepSeek 配置样例</div>
 
-### 3.2 对接腾讯云
+### 3.4 对接腾讯云
 
 **步骤1 添加账号**
 
@@ -139,19 +181,19 @@ DeepSeek 账号的配置方式如下图所示。
 - **模型映射**：将请求模型名对应到腾讯云上游模型名，如 `kinfra-text-embedding-0-i → kinfra-text-embedding-0-i`。
 - **测试模型**：选择一个模型用于保存时验证，如 `kinfra-text-embedding-0.6b`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image10_obtain_tencent_cloud_api_key.png" alt="获取腾讯云 API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image12_obtain_tencent_cloud_api_key.png" alt="获取腾讯云 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  获取腾讯云 API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  获取腾讯云 API Key</div>
 
 **步骤2 配置样例**
 
 腾讯云‑文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image11_tencent_cloud_text_to_image_model_configuration_example.png" alt="腾讯云 - 文生图模型配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image13_tencent_cloud_text_to_image_model_configuration_example.png" alt="腾讯云 - 文生图模型配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 11  腾讯云 - 文生图模型配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13  腾讯云 - 文生图模型配置样例</div>
 
-### 3.3 对接阿里云百炼
+### 3.5 对接阿里云百炼
 
 **步骤1 添加账号**
 
@@ -164,42 +206,127 @@ DeepSeek 账号的配置方式如下图所示。
 - **协议类型**： 文本 / 文生图 / 向量。
 - **名称**：设置账号显示名称，如 `阿里云百炼`。
 - **API Key**：填写阿里云百炼平台创建的访问密钥。
-- **支持协议**：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
 - **模型映射**：如 `qwen3.7-plus → qwen3.7-plus`。
 - **测试模型**：选择一个模型用于保存时验证，如 `qwen3.7-plus`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image12_obtain_aliyun_api_key.png" alt="获取阿里云 API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image14_obtain_aliyun_api_key.png" alt="获取阿里云 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  获取阿里云 API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14  获取阿里云 API Key</div>
 
 **步骤2 配置样例**
 
 阿里云百炼-文生图模型的配置方式如下图所示。向量模型、文本模型可参照同样的方法完成配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image13_aliyun_text_to_image_model_configuration_example.png" alt="阿里云 - 文生图模型配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image15_aliyun_text_to_image_model_configuration_example.png" alt="阿里云 - 文生图模型配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13 阿里云 - 文生图模型配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 15 阿里云 - 文生图模型配置样例</div>
 
-### 3.4 对接本地 vLLM
+### 3.6  对接百度智能云千帆
 
 **步骤1 添加账号**
 
-- **供应商**：选择 `VLLM`。
-- **协议类型**：文本 / 文生图 / 向量 。
-- **名称**：设置账号显示名称，如 `本地-vllm`。
-- **服务地址**：填写本地 vLLM 服务的访问地址，如 `http://192.168.20.242:8000/v1`。
-- **API Key**：若本地服务未启用鉴权，无 API Key 则输入任意字符即可。
-- **支持协议**：勾选要开放的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
-- **模型映射**：可点击 **发现模型** 拉取本地已加载的模型列表快速补全。
-- **测试模型**：选择一个模型用于保存时验证。
+添加千帆大模型之前，需要先在 [百度智能云千帆大模型平台](https://qianfan.cloud.baidu.com/) 中进行注册并登录。在控制台【API Key】页面中创建 API Key，用于后续填写在网关账号的访问凭据中。
+
+- **供应商**：选择 `百度智能云千帆`。
+- **账号类型**： Coding Plan / Token Plan / 按量付费。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `百度千帆`。
+- **API Key**：填写在百度智能云千帆控制台【API Key】页面创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式， `openai-completions`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，或可点击 **发现模型** 拉取平台已接入的模型列表快速补全，如 `qianfan-code-latest → qianfan-code-latest`。
+- **测试模型**：选择一个模型用于保存时验证，如 `qwen3.7-plus`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image16_obtain_baidu_qianfan_api_key.png" alt="获取百度千帆 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 16 获取百度千帆 API Key</div>
 
 **步骤2 配置样例**
 
-本地 vLLM 文本模型配置方式如下图所示。向量模型、文生图模型可参照同样的方法完成配置。
+百度智能云千帆的 Coding Plan 账号配置方式如下图所示，其余账号类型配置方式一致。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image14_local_vllm_configuration_example.png" alt="本地 vLLM 配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image17_baidu_qianfan_configuration_example.png" alt="百度千帆配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14 本地 vLLM 配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17 百度千帆配置样例</div>
+
+### 3.7 对接火山引擎方舟
+
+**步骤1 添加账号**
+
+添加火山引擎方舟模型之前，需要先在火山方舟控制台中开通对应模型服务并获取 API Key，用于后续填写在网关账号的访问凭据中。
+
+- **供应商**：选择 `火山引擎方舟`。
+- **账号类型**： Coding Plan / Token Plan / 按量付费。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `火山引擎方舟模型`。
+- **API Key**：填写火山引擎方舟平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式， 如 `openai-completions`、`openai-responses`、`anthropic-messages`
+- **模型映射**：选择供应商后自动列出可用模型，或可点击 **发现模型** 拉取平台已接入的模型列表快速补全，如 `doubao-seed-2.0-code → doubao-seed-2.0-code`。
+- **测试模型**：选择一个模型用于保存时验证，如 `ark-code-latest`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image18_obtain_volcengine_ark_api_key.png" alt="获取火山引擎方舟 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18 获取火山引擎方舟 API Key</div>
+
+**步骤2 配置样例**
+
+火山引擎方舟的 Coding Plan 账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image19_volcengine_ark_configuration_example.png" alt="火山引擎方舟配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19 火山引擎方舟配置样例</div>
+
+### 3.8 对接智谱 Z.ai
+
+**步骤1 添加账号**
+
+添加讯智谱 Z.ai 模型之前，需要先在 [智谱AI开放平台](https://open.bigmodel.cn/) 中进行注册并创建 API Key。
+
+- **供应商**：选择 ` 智谱 Z.ai`。
+- **账号类型**：中国区 Token Plan / 全球区 Token Plan / 中国区按量付费 / 全球区按量付费
+- **名称**：设置账号显示名称，如 `智谱模型`
+- **API Key**：填写智谱 AI 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `glm-5.1 → glm-5.1`；需添加模型时可点击 **+ 添加**。
+- **测试模型**：选择一个模型用于保存时验证，如 `glm-5.1`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image20_obtain_zhipu_ai_api_key.png" alt="获取智谱 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20 获取智谱 API Key</div>
+
+**步骤2 配置样例**
+
+智谱 Z.ai 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image21_zhipu_ai_configuration_example.png" alt="智谱配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21 智谱配置样例配置样例</div>
+
+### 3.9 对接 Kimi
+
+**步骤1 添加账号**
+
+添加 Kimi 模型之前，需要先在 [Moonshot AI 开放平台](https://platform.moonshot.cn/console/account) 中注册并创建 API Key。
+
+- **供应商**：选择 ` Kimi`。
+- **账号类型**：中国区 Token Plan / 全球区 Token Plan / 中国区按量付费 / 全球区按量付费
+- **名称**：设置账号显示名称，如 `Kimi`
+- **API Key**：填写 Moonshot AI 开放平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `k3-256k → k3-256k`；需添加模型时可点击 **+ 添加**。
+- **测试模型**：选择一个模型用于保存时验证，如 `k3-256k`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image22_obtain_kimi_api_key.png" alt="获取 Kimi API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22 获取 Kimi API Key</div>
+
+**步骤2 配置样例**
+
+Kimi 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image23_kimi_configuration_example.png" alt=" Kimi 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23 Kimi 配置样例</div>
 
 ## 4 注意事项
 
