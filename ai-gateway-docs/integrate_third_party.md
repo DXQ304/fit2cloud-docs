@@ -1,5 +1,7 @@
 ---
 title: 接入第三方
+description: 将 WorkBuddy、DeepSeek Harness、codex、Claude Code、Cursor、OpenClaw、OpenCode 等客户端接入 1Panel AI 网关。
+slug: /ai-gateway/integrate-third-party
 ---
 
 在开始之前，先弄清楚两个名词，后文会反复出现：
@@ -15,38 +17,38 @@ title: 接入第三方
 2. **模型名称**：管理员在网关里给你开通的模型标识（例如 `1Panel-Auto`），配置时必须一字不差。
 
 
-### 1 准备工作：获取 API Key
+## 1 准备工作：获取 API Key
 
 不管你用哪个客户端，都需要先在 1Panel AI 网关管理端创建属于自己的 API Key。如果你已经做过这一步并保存了 Key，可以跳到对应客户端的章节。
 
 首先进入模型广场：登录管理端后，默认进入「模型广场」页面。在这里你能看到网关已接入的**所有可用模型**、统一的**接入地址**，以及每个模型的**名称与类型**。后续客户端配置要用到的模型名称和接入地址，都能在这一页找到（配置时需一字不差）。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/model-square/image1-model-square.png" alt="模型广场"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/model-square/image1-model-square.png" alt="模型广场"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 1  模型广场</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 1  模型广场</div>
 
 然后创建 API Key：进入「API Key 管理」页面，为自己创建新的 API Key。Key 仅在创建时完整显示一次，请务必立即复制保存。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image2_create_apikey.png" alt="创建 API Key"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image2_create_apikey.png" alt="创建 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 2  创建 API Key</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 2  创建 API Key</div>
 
 复制并妥善保管 API Key，避免泄露给他人。如 Key 遗忘或泄露，需在管理端重新生成并更新所有客户端配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image3_copy_apikey.png" alt="复制 API Key"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image3_copy_apikey.png" alt="复制 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 3  复制 API Key</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 3  复制 API Key</div>
 
 
-### 2 接入 WorkBuddy
+## 2 接入 WorkBuddy
 
-#### 2.1 下载并安装 WorkBuddy
+### 2.1 下载并安装 WorkBuddy
 
 WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击安装包、像装普通软件一样下一步到底即可。
 
 - **官方下载页**：https://www.workbuddy.cn/（打开网页后点击页面上的"立即下载"，按自己的电脑系统选择：Windows 选 **Windows x64**；Mac 电脑按芯片选 **Apple 芯片（M 系列）** 或 **Intel** 版本）
 
-:::tip[温馨提示]
+:::note[温馨提示]
 
 怎么知道自己的 Mac 是苹果芯片还是 Intel？点屏幕左上角苹果图标 →「关于本机」，"芯片"一栏写着 Apple Mx 就选 ARM64/Apple 芯片版，写着 Intel 就选 x64/Intel 版。
 
@@ -54,19 +56,19 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 安装完成后打开 WorkBuddy，用页面上的入口登录账号，即可进行下面的模型配置。
 
-#### 2.2 配置自定义模型
+### 2.2 配置自定义模型
 
 点击配置自定义模型：在客户端设置中找到「自定义模型」或「添加模型」入口。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image4_workbuddy_custom_model.png" alt="配置自定义模型"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 4  配置自定义模型</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 4  配置自定义模型</div>
 
 提供商选择自定义：类型选择「自定义」或「OpenAI 兼容」，**不要**选择预设的 OpenAI 官方选项。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image5_select_custom_provider.png" alt="选择自定义提供商"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image5_select_custom_provider.png" alt="选择自定义提供商"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 5  选择自定义提供商</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 5  选择自定义提供商</div>
 
 填入以下三项信息：
 
@@ -76,9 +78,9 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 三者需完全一致。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image6_fill_integration_config.png" alt="填写接入配置"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image6_fill_integration_config.png" alt="填写接入配置"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 6  填写接入配置</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 6  填写接入配置</div>
 
 :::note[注意]
 
@@ -86,18 +88,18 @@ WorkBuddy 是一款 AI 办公桌面客户端，支持 Windows 和 macOS，双击
 
 :::
 
-#### 2.3 保存并测试
+### 2.3 保存并测试
 
 点击保存，选择刚才配置的模型进行测试：在模型列表中发送测试消息，验证请求是否正常返回。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image7_save_and_test_model.png" alt="保存并测试模型"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image7_save_and_test_model.png" alt="保存并测试模型"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 7  保存并测试模型</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 7  保存并测试模型</div>
 
 
-### 3 接入 DeepSeek Harness
+## 3 接入 DeepSeek Harness
 
-#### 3.1 下载并安装 DeepSeek Harness
+### 3.1 下载并安装 DeepSeek Harness
 
 DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下载一个安装包"这么简单，需要先了解一下两种官方安装方式，任选其一：
 
@@ -119,13 +121,13 @@ DeepSeek Harness 是 DeepSeek 官方开源的 Agent 运行工具，它不是"下
 
 :::
 
-#### 3.2 配置接入 1Panel AI 网关
+### 3.2 配置接入 1Panel AI 网关
 
 进入 DeepSeek Harness（浏览器打开的界面），点击设置、模型、添加自定义提供方。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image8_deepseek_harness_add_provider.png" alt="添加自定义提供方"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image8_deepseek_harness_add_provider.png" alt="添加自定义提供方"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 8  添加自定义提供方</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 8  添加自定义提供方</div>
 
 填写提供方配置：名称可以随意起（仅用于自己识别）。
 
@@ -135,22 +137,22 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 
 填好后可以点击"获取可用"拉取模型列表；若获取不了，也可以点击"添加"手动填写模型名称（名称需与管理员开通的模型名称完全一致）。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image9_fill_provider_config.png" alt="填写提供方配置"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image9_fill_provider_config.png" alt="填写提供方配置"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 9  填写提供方配置</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 9  填写提供方配置</div>
 
-#### 3.3 选择模型并测试
+### 3.3 选择模型并测试
 
 选择配置好的模型进行测试：保存后在底部输入框左侧的提供商下拉菜单中选择刚添加的提供方，发送消息验证连接。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image10_deepseek_select_test_model.png" alt="选择模型并测试"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image10_deepseek_select_test_model.png" alt="选择模型并测试"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  选择模型并测试</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  选择模型并测试</div>
 
 
-### 4 接入 Codex
+## 4 接入 codex
 
-#### 4.1 下载并安装 Codex（Codex CLI）
+### 4.1 下载并安装 codex（Codex CLI）
 
 Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在命令行（终端）里敲 `codex` 命令使用。安装分两步：
 
@@ -162,7 +164,7 @@ Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在�
 npm install -g @openai/codex
 ```
 
-:::tip[温馨提示]
+:::note[温馨提示]
 
 - 包名必须是 `@openai/codex`，注意前面有 `@openai/`，不要只输 `codex`，那是一个不相关的旧包。
 - 如果下载很慢或超时，可以先换国内镜像源再装：`npm config set registry https://registry.npmmirror.com`
@@ -173,7 +175,7 @@ npm install -g @openai/codex
 
 - **官方仓库**：https://github.com/openai/codex（也可从仓库的 Releases 页下载免 Node.js 的预编译版本）
 
-#### 4.2 CC Switch 配置
+### 4.2 CC Switch 配置
 
 Codex CLI 本身不提供可视化的供应商管理界面，直接修改 `~/.codex/config.toml` 的方式门槛较高。这里借助 CC Switch 这一小工具完成配置：它负责管理 Codex 的供应商配置，并把请求路由到 1Panel AI 网关，无需手工编辑配置文件。
 
@@ -184,9 +186,9 @@ CC Switch 下载地址（GitHub Releases 发布页）：https://github.com/fario
 
 首先下载并安装 CC Switch，安装完成后打开软件，进入供应商管理界面，点击右上角「添加」按钮，新建一个供应商配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image11_ccswitch_add_button.png" alt="点击添加"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image11_ccswitch_add_button.png" alt="点击添加"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 11  点击添加</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 11  点击添加</div>
 
 在弹出的表单中选择「自定义配置」，并填写以下信息：
 
@@ -195,34 +197,34 @@ CC Switch 下载地址（GitHub Releases 发布页）：https://github.com/fario
 
 同时打开「本地路由映射」开关。该功能会在本机启动一个代理地址，Codex 的请求先发往本地代理，再由 CC Switch 转发到 1Panel AI 网关，从而绕开 Codex 对官方接口地址的限制。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image12_enter_apikey_enable_routing.png" alt="填写配置并启用路由"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image12_enter_apikey_enable_routing.png" alt="填写配置并启用路由"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  填写配置并启用路由</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 12  填写配置并启用路由</div>
 
 点击「获取模型列表」，CC Switch 会通过网关的 `/v1/models` 接口拉取当前可用的模型。在返回的列表中选择要使用的模型（或手动添加，名称需与管理端模型映射中的请求模型名称完全一致），确认无误后点击「添加」按钮保存该供应商配置。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image13_fetch_model_list_submit.png" alt="获取模型列表并提交"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image13_fetch_model_list_submit.png" alt="获取模型列表并提交"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13  获取模型列表并提交</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 13  获取模型列表并提交</div>
 
 回到 CC Switch 的开始界面，在供应商列表中选中刚创建的配置，点击「启动」，CC Switch 会将本地路由代理与 Codex 配置一并写入。之后重启 codex（退出正在运行的 Codex CLI 进程后重新启动），使新配置生效。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image14_restart_codex_after_ccswitch.png" alt="重启 codex"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image14_restart_codex_after_ccswitch.png" alt="重启 codex"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14  重启 codex</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 14  重启 codex</div>
 
-#### 4.3 发起测试对话
+### 4.3 发起测试对话
 
-在 Codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（Codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
+在 codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image15_codex_select_model_test.png" alt="codex 测试对话"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image15_codex_select_model_test.png" alt="codex 测试对话"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 15  codex 测试对话</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 15  codex 测试对话</div>
 
 
-### 5 接入 Claude Code
+## 5 接入 Claude Code
 
-#### 5.1 下载并安装 Claude Code
+### 5.1 下载并安装 Claude Code
 
 Claude Code 是 Anthropic 推出的终端编程助手（与 codex 类似，在命令行里敲 `claude` 命令使用），支持 Windows、macOS 和 Linux。
 
@@ -233,13 +235,13 @@ Claude Code 是 Anthropic 推出的终端编程助手（与 codex 类似，在�
 
 安装完在终端输入 `claude --version`，能显示版本号即成功。
 
-:::tip[温馨提示]
+:::note[温馨提示]
 
 如果 `npm install` 下载很慢或超时，可先换国内镜像源再装：`npm config set registry https://registry.npmmirror.com`
 
 :::
 
-#### 5.2 用 CC Switch 配置供应商
+### 5.2 用 CC Switch 配置供应商
 
 Claude Code 本身没有可视化配置界面，这里与 codex 一样借助 CC Switch 完成配置（下载地址见 4.2 节）。打开 CC Switch，点击右上角「添加」新建供应商，选择「自定义配置」，填写以下信息：
 
@@ -247,9 +249,9 @@ Claude Code 本身没有可视化配置界面，这里与 codex 一样借助 CC 
 - **API Key**：粘贴在 1Panel AI 网关管理端创建的 API Key
 - **请求地址**：`https://1router.1panel.cn/v1`（注意末尾的 `/v1` 不可省略，且不要以斜杠结尾）
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image16_ccswitch_edit_provider_name_apikey_baseurl.png" alt="Claude Code 供应商配置"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image16_ccswitch_edit_provider_name_apikey_baseurl.png" alt="Claude Code 供应商配置"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 16  填写供应商名称、API Key 与请求地址</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 16  填写供应商名称、API Key 与请求地址</div>
 
 展开「高级选项」，按以下要点设置：
 
@@ -257,60 +259,60 @@ Claude Code 本身没有可视化配置界面，这里与 codex 一样借助 CC 
 - **认证字段**：保持默认的 `ANTHROPIC_AUTH_TOKEN`
 - **模型映射**：在「Sonnet」等模型角色行中，把「显示名称」与「实际请求模型」都填为网关开通的模型标识（需与模型广场展示的名称一字不差）；其余角色行可留空
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image17_ccswitch_upstream_format_model_mapping.png" alt="Claude Code 上游格式与模型映射"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image17_ccswitch_upstream_format_model_mapping.png" alt="Claude Code 上游格式与模型映射"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17  设置上游格式、认证字段与模型映射</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17  设置上游格式、认证字段与模型映射</div>
 
-#### 5.3 启用供应商
+### 5.3 启用供应商
 
 回到 CC Switch 开始界面，在供应商列表中选中刚创建的 1Panel AI 网关配置，点击「启用」。启用后 CC Switch 会把本地路由与 Claude Code 的配置一并写入。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image18_ccswitch_enable_provider.png" alt="启用 Claude Code 供应商"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image18_ccswitch_enable_provider.png" alt="启用 Claude Code 供应商"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18  启用 1Panel AI 网关供应商</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18  启用 1Panel AI 网关供应商</div>
 
-#### 5.4 信任文件夹并测试对话
+### 5.4 信任文件夹并测试对话
 
 打开一个新的终端，输入 `claude` 启动。首次运行时 Claude Code 会进行安全校验，询问是否信任当前文件夹：选择「Yes, I trust this folder」并按回车。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image19_claude_trust_folder.png" alt="Claude Code 信任文件夹"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image19_claude_trust_folder.png" alt="Claude Code 信任文件夹"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19  首次启动时信任当前文件夹</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19  首次启动时信任当前文件夹</div>
 
 之后在输入框发送一条简单消息（如 `hello`）。若能正常返回回复（如 `Hello! How can I help you today?`），说明 Claude Code → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型的链路已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image20_claude_test_chat.png" alt="Claude Code 测试对话"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image20_claude_test_chat.png" alt="Claude Code 测试对话"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20  Claude Code 测试对话成功</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20  Claude Code 测试对话成功</div>
 
 
-### 6 接入 Cursor
+## 6 接入 Cursor
 
-#### 6.1 下载并安装 Cursor
+### 6.1 下载并安装 Cursor
 
 Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"），支持 Windows、macOS 和 Linux。打开官网 https://cursor.com/download，点击「Download for Windows / Mac」下载安装包，双击安装即可，无需额外配置环境。
 
-#### 6.2 添加自定义模型
+### 6.2 添加自定义模型
 
 打开 Cursor 并登录账号后，在对话输入框下方点击当前模型名称（如 `Composer 2.5 Fast`）打开模型下拉菜单，点击列表底部的「Add Models」。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_cursor_add_models.png" alt="点击 Add Models"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image21_cursor_add_models.png" alt="点击 Add Models"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  点击 Add Models</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21  点击 Add Models</div>
 
 进入「Models」设置页后，点击列表底部的「View All Models」展开全部模型。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_cursor_models_view_all.png" alt="View All Models"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image22_cursor_models_view_all.png" alt="View All Models"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  展开全部模型</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22  展开全部模型</div>
 
 在展开的模型列表最底部，点击「+ Add Custom Model」，开始添加网关模型。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_cursor_add_custom_model.png" alt="Add Custom Model"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image23_cursor_add_custom_model.png" alt="Add Custom Model"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  点击 Add Custom Model</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23  点击 Add Custom Model</div>
 
-#### 6.3 填写接入配置
+### 6.3 填写接入配置
 
 按以下顺序填写四项信息（对应下图标号）：
 
@@ -319,9 +321,9 @@ Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"�
 3. **Override OpenAI Base URL**：打开该开关，填入接口地址 `https://1router.1panel.cn/v1`（末尾 `/v1` 不可省略）
 4. 点击「Add」保存
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_cursor_fill_apikey_baseurl.png" alt="填写接入配置"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image24_cursor_fill_apikey_baseurl.png" alt="填写接入配置"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  填写模型名称、API Key 与接口地址</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24  填写模型名称、API Key 与接口地址</div>
 
 :::note[注意]
   
@@ -329,16 +331,16 @@ Cursor 是一款 AI 编程编辑器（可理解为"内置 AI 助手的 VS Code"�
   
 :::
 
-#### 6.4 选择模型并测试
+### 6.4 选择模型并测试
 
 回到对话界面，再次打开模型下拉菜单，此时列表中已出现刚添加的模型（如 `1Panel-Auto`），点击选中它（下图中红框）并发送一条简单消息。若能正常返回回复，说明 Cursor → 1Panel AI 网关 → 上游模型的链路已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_cursor_select_model_test.png" alt="选择模型并测试"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image25_cursor_select_model_test.png" alt="选择模型并测试"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  选择自定义模型（1Panel-Auto）并测试</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25  选择自定义模型（1Panel-Auto）并测试</div>
 
 
-### 7 接入 OpenClaw
+## 7 接入 OpenClaw
 
 OpenClaw 是一款开源的个人 AI 助手（通过终端使用），同样支持接入自定义模型。接入它需要先在电脑上安装 Node.js（版本建议 22 及以上，方法见 4.1 节），然后在终端（Windows 用 PowerShell）执行安装命令：
 
@@ -348,7 +350,7 @@ npm install -g openclaw
 
 接入 1Panel AI 网关有两种配置方式，任选其一即可：方式一用交互式配置向导（推荐，全程按提示填写）；方式二直接编辑配置文件 `openclaw.json`（适合熟悉 JSON 的用户）。
 
-#### 7.1 方式一：交互式配置向导
+### 7.1 方式一：交互式配置向导
 
 在终端执行以下命令，进入模型配置向导：
 
@@ -358,15 +360,15 @@ openclaw configure --section model
 
 在「Model/auth provider」列表中，用方向键选中「More...」并按回车，展开完整供应商列表。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_section_model.png" alt="进入模型配置向导"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image26_openclaw_config_section_model.png" alt="进入模型配置向导"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26  进入模型配置向导并展开更多供应商</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26  进入模型配置向导并展开更多供应商</div>
 
 在列表中选中「Custom Provider (Any OpenAI or Anthropic compatible endpoint)」并按回车。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image27_openclaw_select_custom_provider.png" alt="选择 Custom Provider"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image27_openclaw_select_custom_provider.png" alt="选择 Custom Provider"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 27  选择 Custom Provider</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 27  选择 Custom Provider</div>
 
 按提示依次填写三项信息：
 
@@ -376,17 +378,17 @@ openclaw configure --section model
 
 填完 Model ID 后，向导会自动校验连通性并显示「Verification successful」；「Endpoint compatibility」保持默认的 OpenAI-compatible，「Endpoint ID」保持与模型 ID 一致即可。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image28_openclaw_fill_baseurl_apikey_modelid.png" alt="填写接口地址、API Key 与模型 ID"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image28_openclaw_fill_baseurl_apikey_modelid.png" alt="填写接口地址、API Key 与模型 ID"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 28  填写接口地址、API Key 与模型 ID 并通过校验</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 28  填写接口地址、API Key 与模型 ID 并通过校验</div>
 
 一路按回车完成剩余选项后，终端出现「Configuration updated.」表示配置已写入 `~/.openclaw/openclaw.json`（旧配置会自动备份为 `.bak` 文件）。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image29_openclaw_config_updated.png" alt="配置更新完成"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image29_openclaw_config_updated.png" alt="配置更新完成"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 29  出现 Configuration updated 即配置完成</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 29  出现 Configuration updated 即配置完成</div>
 
-#### 7.2 方式二：直接编辑 openclaw.json
+### 7.2 方式二：直接编辑 openclaw.json
 
 配置向导不方便使用时，可以直接编辑配置文件 `~/.openclaw/openclaw.json`（Windows 上位于 `C:\Users\<你的用户名>\.openclaw\openclaw.json`），在 `models.providers` 下添加自定义供应商节点，核心字段如下：
 
@@ -416,11 +418,11 @@ openclaw configure --section model
 - **api**：固定填 `openai-completions`
 - **models 的 id / name**：网关开通的模型标识，两处保持一致
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image30_openclaw_edit_json_config.png" alt="编辑 openclaw.json"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image30_openclaw_edit_json_config.png" alt="编辑 openclaw.json"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 30  在 openclaw.json 中配置自定义供应商</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 30  在 openclaw.json 中配置自定义供应商</div>
 
-#### 7.3 校验配置
+### 7.3 校验配置
 
 两种方式配置完成后，都执行以下命令校验配置文件是否合法：
 
@@ -430,9 +432,9 @@ openclaw config validate
 
 终端输出「Config valid: ~/.openclaw\openclaw.json」（绿色）即表示配置正确。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image31_openclaw_config_validate.png" alt="配置校验通过"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image31_openclaw_config_validate.png" alt="配置校验通过"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 31  openclaw config validate 校验通过</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 31  openclaw config validate 校验通过</div>
 
 :::note[常见踩坑]
 
@@ -441,7 +443,7 @@ openclaw config validate
     
 :::
 
-#### 7.4 启动网关并测试对话
+### 7.4 启动网关并测试对话
 
 校验通过后，启动 OpenClaw 网关：
 
@@ -451,24 +453,134 @@ openclaw gateway run --verbose
 
 启动日志最后一行出现 `agent model: my-selfhost/1Panel-Auto`（即配置的供应商/模型）说明模型已生效。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image32_openclaw_gateway_run.png" alt="启动 OpenClaw 网关"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image32_openclaw_gateway_run.png" alt="启动 OpenClaw 网关"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 32  启动网关，agent model 显示为已接入的模型</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 32  启动网关，agent model 显示为已接入的模型</div>
 
 新开一个终端执行 `openclaw tui` 进入对话界面，发送一条简单消息（如"你好"）。能收到模型回复，且状态栏显示所用模型（如 `1Panel-Auto`），说明 OpenClaw → 1Panel AI 网关 → 上游模型链路已经打通。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image33_openclaw_tui_test_chat.png" alt="openclaw tui 测试对话"/>
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image33_openclaw_tui_test_chat.png" alt="openclaw tui 测试对话"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 33  openclaw tui 测试对话成功</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 33  openclaw tui 测试对话成功</div>
 
-### 8 常见问题排查（FAQ）
+## 8 接入 OpenCode
+
+OpenCode 是一款开源的终端 AI 编程助手，支持 Windows、macOS 和 Linux，通过 Node.js 安装并以命令行的方式使用。接入流程与 OpenClaw 类似：先安装客户端与依赖 SDK → 在配置目录写入 `opencode.json` → 启动 OpenCode 并发起测试对话。
+
+### 8.1 下载并安装 OpenCode
+
+OpenCode 没有图形安装包，需要在命令行里通过 npm 全局安装。打开终端（Windows 用 PowerShell，Mac/Linux 用"终端"），依次执行以下命令：
+
+第一步，安装 OpenCode 本体（包名是 `opencode-ai`，注意不是 `opencode`）：
+
+```bash
+npm install -g opencode-ai
+```
+
+安装过程中若弹出 `npm warn allow-scripts ... added 3 packages in 19s` 之类的提示，按提示再次执行 `npm install -g --allow-scripts opencode-ai` 或运行 `npm config set allow-scripts=opencode-ai --location=user` 即可放行安装脚本。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image34_install_opencode_ai.png" alt="安装 opencode-ai"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 34  安装 opencode-ai</div>
+
+装完后输入 `opencode --version`，能显示版本号（如 `1.18.29`）即安装成功。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image35_check_opencode_version.png" alt="查看 opencode 版本"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 35  opencode --version 显示版本号</div>
+
+### 8.2 创建配置目录并安装兼容 SDK
+
+OpenCode 的配置文件位于用户目录下的 `~/.config/opencode`（Windows 上即 `C:\Users\<你的用户名>\.config\opencode`），初次安装该目录可能不存在，需要手动创建。同时，由于 OpenCode 调用大模型依赖 OpenAI 兼容协议，还需要在配置目录内安装对应的 SDK 包：
+
+```bash
+mkdir "%USERPROFILE%\.config\opencode"
+cd /d "%USERPROFILE%\.config\opencode"
+npm install @ai-sdk/openai-compatible
+```
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image36_create_config_dir_install_sdk.png" alt="创建配置目录并安装 SDK"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 36  创建配置目录并安装 @ai-sdk/openai-compatible</div>
+
+### 8.3 编辑 opencode.json 配置文件
+
+在 `~/.config/opencode` 目录下新建 `opencode.json`，按以下结构填写（`baseURL` 与 `apiKey` 替换为管理员实际提供的值）：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "router/deepseek-v4-flash",
+  "provider": {
+    "router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "1Router 网关",
+      "options": {
+        "baseURL": "https://1router.1panel.cn/v1",
+        "apiKey": "sk-你的APIKey"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash"
+        }
+      }
+    }
+  }
+}
+```
+
+四个要点：
+
+- **provider 的 npm**：固定填 `@ai-sdk/openai-compatible`（即上一步安装的 SDK）
+- **baseURL**：网关接口地址，末尾 `/v1` 不可省略
+- **apiKey**：网关管理端创建的 API Key
+- **model 字段**：格式为 `<provider名>/<模型标识>`，需与网关开通的模型名称完全一致
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image37_edit_opencode_json_config.png" alt="编辑 opencode.json 配置"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 37  在 opencode.json 中填写网关地址、API Key 与模型</div>
+
+保存后即可关闭编辑器。
+
+### 8.4 启动 OpenCode
+
+在任意终端输入 `opencode` 并按回车启动。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image38_run_opencode_command.png" alt="启动 opencode"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 38  在终端执行 opencode 启动</div>
+
+首次启动会进入 OpenCode 主界面：界面中央显示 ASCII 风格的 `opencode` 标志，下方是带提示语的输入框，左下角显示当前工作目录（如 `~\.config\opencode`），右下角显示 OpenCode 版本号，底部状态栏会列出可用的 Provider 与模型（如 `Build DeepSeek V4 Flash 1Router 网关`），表示配置已生效。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image39_opencode_main_ui.png" alt="opencode 主界面"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 39  OpenCode 主界面（底部状态栏显示 1Router 网关与已配置模型）</div>
+
+:::note[常见踩坑]
+
+- 启动后若底部状态栏没有出现 `1Router 网关`，说明 `opencode.json` 没有被识别：检查文件是否放在 `~/.config/opencode/opencode.json`（不是 `~/.opencode`），并确认 JSON 语法没有多余的逗号或引号。
+- 若提示 `provider not found`，通常是 `npm install @ai-sdk/openai-compatible` 这一步没有执行成功，重新在该目录下执行安装命令即可。
+
+:::
+
+### 8.5 发起测试对话
+
+在底部输入框中发送一条简单消息（如"你好请用一句话介绍你自己"），等待模型返回。若能正常收到回复，且右上角 Context 区域显示 `Context`、`Tokens`、`$0.00 spent` 等统计信息，状态栏仍显示 `Build DeepSeek V4 Flash 1Router 网关`，说明 OpenCode → 1Panel AI 网关 → 上游模型链路已经打通。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image40_opencode_test_chat_success.png" alt="opencode 测试对话"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
+
+
+## 9 常见问题排查（FAQ）
 
 配置完成后测试如果不通，按下面的对照表排查，基本都能解决：
 
 | 报错现象                        | 大概率原因                                                    | 解决办法                                            |
 | --------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
-| 401 / 403                   | API Key 无效、复制不完整（少了开头或结尾字符）、已过期                          | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格                  |
+| 401 / 403                   | API Key 无效、复制不完整（少了开头或结尾字符）、已过期                         | 回管理端确认 Key 有效，重新复制粘贴一遍，注意不要带空格                  |
 | 404                         | 接口地址或模型名称填错                                              | 检查 Base URL 末尾是否有 `/v1`；模型名称与管理员开通的是否一字不差       |
 | 连接超时 / 无法访问                 | 网络不通、地址不对                                                | 换个浏览器访问 Base URL 确认可达；确认电脑没有开启拦截流量的代理软件         |
 | 能连通但没有回复 / 模型列表为空           | 该模型未分配给你的账号                                              | 联系管理员确认模型已加入你的用户组                               |
 | Claude Code 报错连不上 / 走的是官方接口 | CC Switch 供应商未启用，或上游格式未选「OpenAI Chat Completions（需开启路由）」 | 回到 CC Switch 确认网关供应商处于「启用」状态，并在高级选项中检查上游格式与模型映射 |
+| OpenCode 启动后状态栏未显示网关         | opencode.json 路径不对、SDK 未安装成功或 JSON 语法错误                  | 确认文件位于 `~/.config/opencode/opencode.json`；在该目录下重新执行 `npm install @ai-sdk/openai-compatible`；用 JSON 校验工具检查语法 |
