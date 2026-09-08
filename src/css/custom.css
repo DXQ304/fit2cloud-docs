@@ -35,30 +35,34 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* footer 文档链接用淡灰色(去掉蓝色) */
-.footer__link-item {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-.footer__link-item:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* ===== footer 文字大小与侧边栏一致(14px) =====
-   侧边栏菜单(.theme-doc-sidebar-container .menu__link)和文档正文
-   (.theme-doc-markdown)都是 14px, 这里把 footer 的三列链接与版权区文字
-   也统一到 14px, 保持全站正文同字号。列标题(.footer__title)保留粗体
-   h4 样式作为标题, 仅字号压到 14.5px 与正文接近衔接。 */
-.footer__link-item,
-.footer__copyright {
-  font-size: 14px;
+/* ===== footer 对齐 Figma 首页设计稿 (浅色页脚) =====
+   设计稿规格 (spec_full.txt Group 22):
+   - 背景: 页面浅蓝渐变延续 (#f7fbff)
+   - 列标题 '快速浏览/联系我们/资料下载' 24px/600 #001222
+   - 链接 16px/24 #6c7280 (带 Carbon 图标, 颜色继承)
+   - 版权三行 16px #6c7280 居中, 上方 1px 分隔线
+   链接数据沿用 docusaurus.config.js 里维护的真实地址。 */
+.footer {
+  background: #f7fbff;
+  --ifm-footer-padding-vertical: 64px;
 }
 .footer__title {
-  font-size: 14.5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #001222;
+  margin-bottom: 20px;
+}
+.footer__link-item {
+  color: #6c7280 !important;
+  font-size: 16px;
+}
+.footer__link-item:hover {
+  color: #0c7be0 !important;
 }
 
 /* footer 链接项: 用 flex 让「图标 + 文字 + 外链箭头」水平排成一行并垂直居中。
-   默认 .footer__link-item 是 inline, 改为 flex 后图标尺寸用 1em 跟随文字字号(14px),
-   间距用 gap 统一控制。图标颜色继承 currentColor(白色半透明), 与文字一致。 */
+   默认 .footer__link-item 是 inline, 改为 flex 后图标尺寸用 1em 跟随文字字号(16px),
+   间距用 gap 统一控制。图标颜色继承 currentColor(灰色), 与文字一致。 */
 .footer__link-item {
   display: inline-flex;
   align-items: center;
@@ -71,35 +75,23 @@
   flex-shrink: 0;
 }
 
-/* ===== footer 版权区(照搬 www.fit2cloud.com 的三行结构) =====
-   copyright 是 dangerouslySetInnerHTML 渲染的, 里面是「备案号 / 版权所有 / 隐私政策|许可协议」
-   三行。Infima 完全没有为 .footer__copyright 定义规则, 默认 line-height 会让三行挤在一起,
-   这里拉到 2, 与 .footer__link-item 的行高对齐。
-
-   【为什么版权行会是刺眼的蓝紫色 #333dff】
-   Infima 只有两条相关定义:
-     .footer      { color: var(--ifm-footer-color); }              ← 版权 div 从这里继承颜色
-     .footer--dark{ --ifm-footer-color: var(--ifm-footer-link-color);
-                    --ifm-footer-link-color: var(--ifm-color-secondary); }
-   而本文件 :root 里把 --ifm-color-secondary 改成了 #333dff(蓝紫), 于是 .footer__copyright
-   整行文字 = #333dff。上方 .footer__link-item 已被强制成白色半透明, 所以「只有版权行是蓝的」。
-   下面显式指定颜色, 让它和底部其他文字完全一致。 */
+/* 版权区: 三行(备案号/版权所有/条款链接)居中浅灰, 上方 1px 分隔线 */
 .footer__copyright {
   line-height: 2;
-  color: rgba(255, 255, 255, 0.6) !important;
+  padding-top: 24px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(108, 114, 128, 0.25);
+  color: #6c7280 !important;
 }
-/* 版权区内的 <a>(备案号 / 隐私政策 / 许可协议)统一成同样的白, 并去掉下划线;
-   (docusaurus.config.js 里给这些 a 加的 class="footer__link-item" 因此变成冗余, 留着无害) */
 .footer__copyright a {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: #6c7280 !important;
   text-decoration: none;
 }
 .footer__copyright a:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #0c7be0 !important;
 }
-/* 隐私政策与许可协议之间的 "|" 分隔符压暗一档, 避免比两侧文字还抢眼 */
 .footer__copyright .footer__link-separator {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(108, 114, 128, 0.5);
 }
 
 /* 提示框：白底（对齐 1Panel 卡片式），去掉 Infima 的浅色底与阴影。
@@ -135,6 +127,20 @@
 [data-theme='dark'] .alert--success,
 [data-theme='dark'] .alert--info {
   --ifm-alert-border-color: #00c853;
+}
+
+/* JumpServer 文档页：提示框左边框用官方文档主色（深青绿 #2b937c）。
+   由 src/clientModules/docsProduct.js 在该产品页给 <html data-docs-product='jumpserver'>
+   打标记, 仅 JumpServer 页生效, 不影响其他产品。 */
+html[data-docs-product='jumpserver'] .alert--secondary,
+html[data-docs-product='jumpserver'] .alert--success,
+html[data-docs-product='jumpserver'] .alert--info {
+  --ifm-alert-border-color: #2b937c;
+}
+[data-theme='dark'] html[data-docs-product='jumpserver'] .alert--secondary,
+[data-theme='dark'] html[data-docs-product='jumpserver'] .alert--success,
+[data-theme='dark'] html[data-docs-product='jumpserver'] .alert--info {
+  --ifm-alert-border-color: #2b937c;
 }
 
 /* navbar 只显示 logo, 隐藏 logo 旁的文字标题(navbar.title 留空时 Docusaurus 会 fallback 站点标题, 这里一并隐藏) */
@@ -421,4 +427,88 @@ aside.theme-doc-sidebar-container {
    导致中文提示框标题里的英文(如 Elasticsearch)被强制大写，这里恢复原文大小写。 */
 [class*=admonitionHeading] {
   text-transform: none !important;
+}
+
+/* ===== navbar 对齐 Figma 首页设计稿 =====
+   设计稿导航(节点 492:10073 / Group1 rel=[360,24,1200,70]):
+   - 白色圆角悬浮卡: 居中断宽度约1200/顶部留白24/圆角/浅阴影
+   - 小号深蓝黑字 logo "FIT2CLOUD 飞致云"(无"文档中心", 由 fit2cloud-logo.png 提供)
+   - 菜单项(首页/产品文档▾/官网/论坛/培训认证/关于我们/合作伙伴)从左到右一行,
+     默认灰字、hover/激活蓝色(首页默认激活=品牌蓝)
+   - 右侧仅: 搜索 + 版本切换(多版本才显示) + 中英文切换
+   说明: 首页 Hero 自带浅蓝渐变背景, 白色悬浮卡会自然浮在浅蓝之上, 与设计稿一致。 */
+/* Infima 的 .navbar--fixed-top 是 left:0;right:0 满宽 fixed。
+   用 margin auto 居中 + 限宽, 不能用 left:50%+translateX(会与 right:0 冲突导致错位) */
+.navbar {
+  top: 12px;
+  right: 0;
+  left: 0;
+  margin: 12px auto 0;
+  width: calc(100% - 48px);
+  max-width: 1240px;
+  min-height: 70px;
+  --ifm-navbar-height: 70px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff !important;
+  border: 1px solid rgba(228, 232, 240, 0.9);
+}
+.navbar__inner {
+  max-width: 100%;
+}
+
+/* ===== 首页顶部背景色 =====
+   navbar 是悬浮白卡(top 12px、左右各留 24px), 卡片外围露出的默认是 body 白色,
+   与首页 Hero 的浅蓝渐变起始色 #eaf1ff 不一致, 顶部会出现一段白边。
+   这里把「首页」的 body 背景设成与 Hero 相同的 #eaf1ff, 让顶部无缝衔接。
+   两条选择器互为兜底:
+     - body:has(.portalPage) : 纯 CSS, SSR 首屏即生效(现代浏览器)
+     - body.home-page        : 由首页 JS 挂载/卸载, 兜底不支持 :has() 的旧浏览器
+   仅作用于首页, 文档页仍保持 --ifm-background-color 的白色底。 */
+body:has(.portalPage),
+body.home-page {
+  background-color: #eaf1ff;
+}
+/* 菜单项: 字号14、字重400、默认灰、hover/激活蓝(对齐设计稿灰字+蓝激活) */
+.navbar__link {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  padding: 0 12px;
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: #0c7be0;
+  background: transparent;
+}
+/* 隐藏主题切换开关(设计稿导航右侧只有 搜索+语言, 无主题切换)。
+   匹配 ColorModeToggle 的哈希类名, 限定在 navbar 内避免影响其他地方。 */
+.navbar [class*='colorModeToggle'] {
+  display: none !important;
+}
+/* 导航搜索框: 对齐设计稿 Search 实例(215x32 r20 白底 pill, placeholder 请输入)。
+   隐藏 ctrl/ctrl+k 快捷键提示, 收窄整体宽度。 */
+.navbar [class*='searchBarValue'] {
+  width: 215px;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 20px;
+  border: 1px solid #e4e8f0;
+  background: #ffffff;
+  font-size: 14px;
+  color: #c8cbcb;
+  gap: 6px;
+}
+.navbar [class*='searchBarValue'] kbd,
+.navbar [class*='searchHint'],
+.navbar [class*='searchIndex'] kbd {
+  display: none !important;
+}
+/* 移动端: 悬浮卡缩小边距, 避免在小屏过于拥挤 */
+@media (max-width: 996px) {
+  .navbar {
+    top: 8px;
+    width: calc(100% - 24px);
+    border-radius: 10px;
+  }
 }
