@@ -150,9 +150,9 @@ API 密钥填第 1 步里复制的 API Key，API 协议保持默认即可。
 <div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 10  选择模型并测试</div>
 
 
-## 4 接入 codex
+## 4 接入 Codex
 
-### 4.1 下载并安装 codex（Codex CLI）
+### 4.1 下载并安装 Codex（Codex CLI）
 
 Codex CLI 是 OpenAI 推出的终端编程助手——没有窗口界面，在命令行（终端）里敲 `codex` 命令使用。安装分两步：
 
@@ -215,7 +215,7 @@ CC Switch 下载地址（GitHub Releases 发布页）：https://github.com/fario
 
 ### 4.3 发起测试对话
 
-在 codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
+在 Codex 中发起一次对话测试：选择映射到 1Panel AI 网关的模型（如 `1Panel-Auto`），发送一条简单消息。若能正常返回回复，说明整条链路（Codex → CC Switch 本地路由 → 1Panel AI 网关 → 上游模型）已经打通。
 
 <img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image15_codex_select_model_test.png" alt="codex 测试对话"/>
 
