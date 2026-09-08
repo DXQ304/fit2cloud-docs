@@ -32,10 +32,12 @@ const config = {
   // 各产品图片自包含: 图片放在各自产品目录的 static/ 里, 统一平铺映射到 /（URL 保持 /img/<ns>/...）
   // 注意: 'static'(门户自身, favicon/social-card/undraw)必须放在第一位, 避免同路径被产品目录覆盖。
   // 1Panel 已按自包含架构迁移; dataease/maxkb/jumpserver 当前为单 index.md 占位(无图片), 预留注册项(建立后自动生效)。
+  // sqlbot: 已按自包含架构迁入, namespace=sqlbot。
   staticDirectories: [
     'static',
     '1panel-docs/static',
     '1panel_versioned_docs/version-v1/static',
+    'sqlbot-docs/static',
     // 以下为预留(当前无图片, 建立后自动生效)
     'dataease-docs/static',
     'maxkb-docs/static',
@@ -100,6 +102,21 @@ const config = {
         versions: {
           current: { label: 'v2', badge: false, banner: 'none' },
           v1: { label: 'v1', badge: false, banner: 'none' },
+        },
+      },
+    ],
+    // SQLBot 官方文档(从 MkDocs 迁移), namespace=sqlbot
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sqlbot',
+        path: 'sqlbot-docs',
+        routeBasePath: 'sqlbot',
+        sidebarPath: 'sqlbot-docs/sidebars.js',
+        // 版本化: current = v1, 暂无历史版本(后续出新版用 docs:version:sqlbot v1 快照)
+        lastVersion: 'current',
+        versions: {
+          current: { label: 'v1', badge: false, banner: 'none' },
         },
       },
     ],
