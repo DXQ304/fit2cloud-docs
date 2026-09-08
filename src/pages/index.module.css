@@ -1,172 +1,260 @@
-/* 首页样式：还原 fit2cloud 主页观感 = 浅蓝→白柔和渐变 hero + 深色文字, 文档页保持白底。
-   首页在 light/dark 主题下保持一致的浅色视觉, 不跟随站点主题切换。 */
+/* ==================================================================
+ * Figma 主页设计稿还原样式 (frame '2', 画布 1920, 内容容器 1200 居中)
+ * 所有数值来自 figma-data/spec_full.txt 的节点树精确解析
+ * ================================================================== */
+
+/* 整页底色: 设计稿 FRAME2 fill=#eaf1ff, 向下渐变到近白(卡片/横幅区域) */
 .portalPage {
-  /* 浅蓝→淡蓝→白 柔和渐变(同 fit2cloud 浅蓝体系) */
-  background: linear-gradient(165deg, #eaf1ff 0%, #f7fbff 45%, #ffffff 100%);
-  min-height: 100vh;
-  /* 显式深色文字: dark 主题下 body 是浅色, 不设会继承下来导致整页文字变浅 */
-  color: #1a1a2e;
+  background: linear-gradient(180deg, #eaf1ff 0%, #eef4ff 45%, #f7fbff 100%);
+  padding-bottom: 0;
 }
 
-.portalHeader {
-  padding: 120px 0 70px; /* fit2cloud f2c-banner 的大留白 */
-  text-align: center;
-  background: transparent; /* 渐变由 portalPage 统一提供 */
+/* ---------------- Hero ---------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* 标题区留白: 顶部避开悬浮 navbar(94) + 留白, 底部与产品区相接 */
+  padding: 231px 0 80px;
 }
 
-.portalTitle {
-  font-size: 3rem; /* fit2cloud h1 48px 风格 */
-  font-weight: 600;
-  margin-bottom: 1.6rem; /* 原来是 0.8rem，靠副标题的 1.4rem margin-bottom 撑出和搜索框的距离；副标题删了直接把间距挪到 title 上 */
-  color: #1a1a2e; /* 浅蓝底上深色标题 */
+/* 光晕: Ellipse 1 #3370ff op10% 左上; Ellipse 2 #b459ff op5% 右下 */
+.heroDecor {
+  position: absolute;
+  width: 908px;
+  height: 908px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.heroDecorBlue {
+  background: #3370ff;
+  opacity: 0.1;
+  top: -205px;
+  left: -344px;
+}
+.heroDecorPurple {
+  background: #b459ff;
+  opacity: 0.05;
+  top: 395px;
+  right: -220px;
 }
 
-/* ===== 首页 hero 里的真实搜索框 =====
-   复用 navbar 的 @theme/SearchBar, 但要把插件/Infima 为 navbar 写的尺寸全部覆盖掉:
-   - Infima:  .navbar__search-input 固定 width: 12.5rem, ≤996px 时 9rem
-   - 插件:    .searchBarContainer { margin-left: 16px }
-              ≤576px 时未聚焦的 .navbar__search-input 会被压成 2rem(折叠成放大镜)
-   宽度取 35rem = 560px, 与插件下拉的 --search-local-modal-width 默认值一致,
-   这样下拉正好落在搜索框正下方(插件用 right:0 !important 右对齐)。 */
-.searchBox {
-  display: flex;
-  justify-content: center;
-  /* min(): 大屏锁 560px(与下拉同宽), 小屏自动留出左右各 1rem gutter 防止顶到屏幕边缘。
-     不能直接写 padding —— .portalHeader 没有左右内边距, 且 Infima 全局 box-sizing:border-box,
-     加 padding 会让内容宽度变成 528px, 反而和 560px 的下拉错开 32px。 */
-  max-width: min(35rem, 100% - 2rem); /* 不套 calc(): min() 内部本就允许裸运算, 避免 postcss-calc 处理嵌套 calc 的边界情况 */
+.heroInner {
+  position: relative;
+  max-width: 1248px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
-.searchBox :global(.navbar__search) {
-  display: block;
-  width: 100%;
-  margin-left: 0;
-}
-
-/* 关键修复: autoComplete.js 在第一次 hover/focus 后会把 input 包进
-   <span class="aa-Form" style="display:inline-block; position:relative">
-   (见 node_modules/@easyops-cn/autocomplete.js/src/autocomplete/html.js:4
-   wrapper: '<span class="%ROOT%"></span>' + css.js:wrapper 对象)。
-   inline-block 是 shrink-to-fit, input 的 width:100% 又相对 wrapper 算, 死循环。
-   hover 触发回流时 wrapper 被插入 DOM, 浏览器重新解析尺寸链, 循环被打破,
-   wrapper 退回 shrink-to-fit, input 被压到 intrinsic size(≈ 200px),
-   放大镜是 position:absolute; left:1.1rem 相对 .navbar__search, 永远在容器左边,
-   就脱到输入框外了 —— 必须在 wrapper 上把它拍死成 block + 100%。
-   选 > span 而非 > div 或 .aa-Form: wrapper 标签是 <span>(html.js 写死),
-   不依赖 CSS Modules 哈希, 升级抗性最强。 */
-.searchBox :global(.navbar__search) > span {
-  display: block !important;
-  width: 100% !important;
-}
-
-.searchBox :global(.navbar__search-input) {
-  width: 100% !important; /* 同时压过 Infima 的固定宽度和插件 ≤576px 的 2rem 折叠 */
-  height: 3rem;
-  padding: 0 2.75rem; /* 右侧留白给 Ctrl/Cmd+K 提示与清空按钮 */
-  font-size: 1rem;
-  color: #1a1a2e;
-  background-color: #ffffff;
-  border: 1px solid rgba(12, 123, 224, 0.25);
-  border-radius: 2rem;
-  box-shadow: 0 6px 20px rgba(12, 123, 224, 0.1);
-}
-
-.searchBox :global(.navbar__search-input)::placeholder {
-  color: rgba(26, 26, 46, 0.45);
-}
-
-/* 放大镜图标: 跟着 3rem 高的输入框重新定位(插件默认按 2rem 高算, left:0.75rem / 1rem)。
-   用 `> svg` 而非 `> div > svg`: 前者不依赖 searchBox 与 .navbar__search 之间的层级, 更抗升级。
-   只匹配一个 svg —— 插件里的 LoadingRing 渲染的是 <div> 不是 <svg>, 不会被误伤。 */
-.searchBox :global(.navbar__search) > svg {
-  left: 1.1rem;
-  width: 1.15rem;
-  height: 1.15rem;
-}
-
-/* 聚焦描边: 插件给的是 outline:2px solid primary, 贴着 2rem 圆角会显重, 往外推 2px 更透气 */
-.searchBox :global(.navbar__search-input):focus {
-  outline-offset: 2px;
-}
-
-.categorySection {
-  margin-bottom: 3rem;
-}
-
-.categoryTitle {
-  font-size: 1.35rem;
+/* 标题与副标题: 居中展示(原右侧插画已移除, 与搜索框共用一条中轴线) */
+.heroTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 48px;
   font-weight: 600;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 2px solid rgba(12, 123, 224, 0.15);
-  color: #1a1a2e; /* 浅蓝底上深色分类标题 */
+  line-height: 67px;
+  color: #001222;
+}
+.heroSubtitle {
+  position: relative;
+  z-index: 1;
+  margin: 12px auto 0; /* 上下左零、左右自动 → 居中 */
+  width: 760px; /* 限宽, 避免居中后单行过长影响阅读 */
+  max-width: 100%;
+  text-align: center;
+  word-break: break-word;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6c7280;
 }
 
+/* 大搜索框: 设计稿 [560,438,800,72] r12 白底, 容器内居中 */
+/* 搜索框与结果下拉面板已抽到 src/components/HomeSearch (含自身样式) */
+
+/* ---------------- 全部产品 ---------------- */
+.productsSection {
+  padding: 40px 0 0;
+}
+.productsInner {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.productsTitle {
+  margin: 0 0 40px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 50px;
+  color: #001222;
+  text-align: center;
+}
+
+/* 3列卡片网格: 卡 384x256, 行/列间距 24 */
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* 产品卡片: 纵排三层结构 —— 第一行(小 logo + 产品名) / 第二行(简介) / 第三行(纯文字「进入文档」) */
 .productCard {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: #ffffff;
-  border: 1px solid rgba(12, 123, 224, 0.1);
-  border-radius: 12px;
-  text-decoration: none;
-  /* 显式深色: 不能 inherit —— dark 主题下 body 文字是浅色, 卡片白底配浅色文字会看不清 */
-  color: #1a1a2e;
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-  min-height: 120px; /* 三层内容紧凑, 设最小高度让各卡片高度一致 */
+  min-height: 256px;
+  padding: 32px;
+  border-radius: 20px;
+  /* 卡底: 设计稿水平渐变 #f7fbff → #ffffff */
+  background: linear-gradient(90deg, #f7fbff 0%, #ffffff 100%);
+  box-shadow: 0 2px 12px rgba(28, 75, 170, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .productCard:hover {
-  box-shadow: 0 8px 24px rgba(12, 123, 224, 0.12);
-  border-color: rgba(12, 123, 224, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(28, 75, 170, 0.12);
   text-decoration: none;
-  color: #1a1a2e;
-  transform: translateY(-2px);
 }
 
-/* 卡片第一行: 小 logo + 产品名 并排居中(logo 用「产品文档」下拉同款彩色小图) */
+/* 分类 Tag: 贴右上角(顶/右与卡缘平齐), r: 右上随卡、左下 12 */
+.cardTag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 28px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+  border-radius: 0 20px 0 12px;
+}
+
 .productHeader {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.7rem;
+  gap: 10px;
+  min-height: 30px;
 }
-
 .productLogo {
-  display: block;
-  width: 26px;
-  height: 26px;
+  height: 30px;
+  width: auto;
+  max-width: 140px;
   object-fit: contain;
+  flex-shrink: 0;
 }
-
 .productName {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #1f2329;
 }
 
-/* 第二行: 产品简介 */
+.productSubtitle {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1f2329;
+}
 .productDesc {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-bottom: 0.9rem;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #646a73;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* 第三行: 「进入文档」, 纯文字(无背景) */
+/* 「进入文档」: 320x32 r4, 渐变描边(#1075e3→#333dff), 白底蓝字 */
 .productEnter {
-  display: inline-block;
-  margin-top: auto; /* 贴底对齐各卡片 */
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #0c7be0; /* 品牌蓝文字 */
+  margin-top: auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #0c7be0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #1075e3 0%, #333dff 100%) border-box;
+  transition: all 0.2s;
+}
+.productCard:hover .productEnter {
+  background:
+    linear-gradient(90deg, #1075e3 0%, #333dff 100%) padding-box,
+    linear-gradient(90deg, #1075e3 0%, #333dff 100%) border-box;
+  color: #ffffff;
+}
+
+/* ---------------- 底部横幅 ---------------- */
+/* 设计稿 Rectangle 27: [0,2152,1920,241], 渐变 #f7fbff→#f8f9ff */
+.bottomBanner {
+  margin-top: 80px;
+  padding: 80px 24px 90px;
+  background: linear-gradient(90deg, #f7fbff 0%, #f8f9ff 100%);
+  text-align: center;
+}
+.bottomTitle {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 45px;
+  color: #001222;
+}
+.bottomSub {
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6c7280;
+}
+
+/* ---------------- 响应式 ---------------- */
+@media (max-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 996px) {
+  .hero {
+    /* 移动端顶部只需避开悬浮 navbar(8+70), 留白收紧 */
+    padding: 132px 0 64px;
+  }
+  .heroTitle {
+    font-size: 36px;
+    line-height: 50px;
+  }
+  /* 副标题在小屏放开限宽, 占满可用宽度避免换行不顺(全局默认限宽 760px) */
+  .heroSubtitle {
+    width: 100%;
+  }
+  .productsTitle {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .bottomBanner {
+    margin-top: 48px;
+    padding: 56px 24px 64px;
+  }
+  .bottomTitle {
+    font-size: 26px;
+    line-height: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroDecor {
+    width: 480px;
+    height: 480px;
+  }
+  .hero {
+    padding-top: 130px;
+  }
 }
