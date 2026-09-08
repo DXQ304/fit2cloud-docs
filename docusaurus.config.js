@@ -38,6 +38,7 @@ const config = {
     '1panel_versioned_docs/version-v1/static',
     'sqlbot-docs/static',
     'dataease-docs/static',
+    'dataease_versioned_docs/version-v2/static',
     // 以下为预留(当前无图片, 建立后自动生效)
     'maxkb-docs/static',
     'ai-gateway-docs/static',
@@ -143,10 +144,11 @@ const config = {
         path: 'dataease-docs',
         routeBasePath: 'dataease',
         sidebarPath: 'dataease-docs/sidebars.js',
-        // 版本化: current = v3, 暂无历史版本(后续出新版用 docs:version:dataease v3 快照)
+        // 版本化: current(dataease-docs) = v3, 历史版本 v2
         lastVersion: 'current',
         versions: {
           current: { label: 'v3', badge: false, banner: 'none' },
+          v2: { label: 'v2', badge: false, banner: 'none' },
         },
       },
     ],
