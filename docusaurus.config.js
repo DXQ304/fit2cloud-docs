@@ -31,18 +31,28 @@ const config = {
 
   // 各产品图片自包含: 图片放在各自产品目录的 static/ 里, 统一平铺映射到 /（URL 保持 /img/<ns>/...）
   // 注意: 'static'(门户自身, favicon/social-card/undraw)必须放在第一位, 避免同路径被产品目录覆盖。
-  // 1Panel / SQLBot / DataEase / MaxKB / Cordys 已按自包含架构迁移; jumpserver 当前为占位或预留。
+  // 1Panel / SQLBot / JumpServer / DataEase / MaxKB / Cordys 已按自包含架构迁移。
   staticDirectories: [
     'static',
     '1panel-docs/static',
     '1panel_versioned_docs/version-v1/static',
     'sqlbot-docs/static',
+    'jumpserver-docs/static',
+    'jumpserver_versioned_docs/version-v3/static',
     'dataease-docs/static',
     'dataease_versioned_docs/version-v2/static',
     'maxkb-docs/static',
     'maxkb_versioned_docs/version-v1/static',
     'cordys-docs/static',
     'ai-gateway-docs/static',
+  ],
+
+  // 客户端模块: 路由更新时给 <html data-docs-product> 打上当前产品标记,
+  // 供 custom.css 按产品定制文档页样式(见 src/clientModules/docsProduct.js)。
+  // navbarSticky: 滚动时切换导航栏贴顶(见 src/clientModules/navbarSticky.js)。
+  clientModules: [
+    './src/clientModules/docsProduct.js',
+    './src/clientModules/navbarSticky.js',
   ],
 
   url: 'https://docs.fit2cloud.com',
@@ -90,6 +100,8 @@ const config = {
 
   // 产品文档实例：最多产品的文档均按 MkDocs 迁移，schema 统一
   plugins: [
+    // 首页即时搜索的文档元数据索引(见 plugins/home-search-index.js)
+    './plugins/home-search-index.js',
     // 1Panel 官方文档(从 MkDocs 迁移), 支持 v1/v2 版本切换
     [
       '@docusaurus/plugin-content-docs',
@@ -230,13 +242,15 @@ const config = {
       },
       navbar: {
         // 左上角 logo: 文档中心 logo(相对路径, 相对 baseUrl /img/...)。
-        // src = 亮色主题(01),  srcDark = 暗色主题(02)
+        // 对齐 Figma 首页设计稿: 使用小号深蓝黑字 "FIT2CLOUD 飞致云" 横幅(无"文档中心"字样),
+        // 由 Figma 设计稿导航 logo 节点(492:10074)导出为透明 PNG(fit2cloud-logo.png)。
+        // 亮/暗主题统一用同一张(暗色下 navbar 仍为白色悬浮卡, 深蓝 logo 清晰可见)。
         // title 留空: 只显示 logo, 不显示文字(若省略 title, Docusaurus 会用站点标题作为文字)
         title: '',
         logo: {
-          src: 'img/FIT2CLOUD 飞致云 文档中心-01.png',
-          srcDark: 'img/FIT2CLOUD 飞致云 文档中心-02.png',
-          alt: '文档中心',
+          src: 'img/fit2cloud-logo.png',
+          srcDark: 'img/fit2cloud-logo.png',
+          alt: 'FIT2CLOUD 飞致云',
         },
         items: [
           {to: '/', label: '首页', position: 'left'},
@@ -248,16 +262,20 @@ const config = {
             type: 'custom-ProductDocs',
             position: 'left',
           },
+          // 以下官网/论坛/培训认证/关于我们/合作伙伴 对齐 Figma 设计稿: 全部放在左侧(logo 之后),
+          // 与"首页/产品文档"同一行, 右侧只留 搜索 + 版本切换 + 中英文切换。
+          // 外部链接一律用 href(不用 to), NavbarNavLink 会自动加
+          // target="_blank" + rel="noopener noreferrer" + 外链小图标
+          {href: 'https://www.fit2cloud.com/', label: '官网', position: 'left'},
+          {href: 'https://bbs.fit2cloud.com/', label: '论坛', position: 'left'},
+          {href: 'https://edu.fit2cloud.com/', label: '培训认证', position: 'left'},
+          {href: 'https://www.fit2cloud.com/about/index.html', label: '关于我们', position: 'left'},
+          {href: 'https://www.fit2cloud.com/partners/index.html', label: '合作伙伴', position: 'left'},
           {
+            // 版本切换: 仅在有多版本文档实例的页面显示, 单版本/非文档页自动隐藏(不影响首页)。
             type: 'custom-VersionSwitcher',
             position: 'right',
           },
-          // 官网 / 论坛 / 培训认证: 放在右侧、中英文切换(localeDropdown)之前。
-          // 外部链接一律用 href(不用 to), NavbarNavLink 会自动加
-          // target="_blank" + rel="noopener noreferrer" + 外链小图标
-          {href: 'https://www.fit2cloud.com/', label: '官网', position: 'right'},
-          {href: 'https://bbs.fit2cloud.com/', label: '论坛', position: 'right'},
-          {href: 'https://edu.fit2cloud.com/', label: '培训认证', position: 'right'},
           {
             type: 'search',
             position: 'right',
@@ -265,10 +283,12 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        // 对齐 Figma 首页设计稿: 浅色页脚(style light), 样式细节见 custom.css 的 footer 段。
+        // 设计稿三列为 快速浏览/联系我们/资料下载; 链接数据沿用项目维护的真实地址。
+        style: 'light',
         links: [
           {
-            title: '常用链接',
+            title: '快速浏览',
             items: [
               {label: '飞致云开源社区', to: 'https://community.fit2cloud.com/'},
               {label: '培训认证中心', to: 'https://edu.fit2cloud.com/'},

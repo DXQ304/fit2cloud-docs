@@ -679,9 +679,9 @@ Hermes Tool Configuration 列出 24 类可选工具（Browser Automation、Compu
 | 工具项 | 推荐选择 | 说明 |
 | --- | --- | --- |
 | Browser Automation | `1. Local Browser` | 本机 Headless Chromium，无需 API Key |
-| Image Generation | `Skip – keep defaults / configure later` | 本教程不演示生图 |
+| Image Generation | `11. Skip – keep defaults / configure later` | 本教程不演示生图 |
 | Text-to-Speech | `1. Microsoft Edge TTS` | 系统自带、质量好、无需 API Key |
-| Web Search & Extract | `Skip – keep defaults / configure later` | Hermes 自带免费 DuckDuckGo 搜索技能，足够日常使用 |
+| Web Search & Extract | `16. Skip – keep defaults / configure later` | Hermes 自带免费 DuckDuckGo 搜索技能，足够日常使用 |
 
 分别对应下面四张截图，依次按回车确认即可完成。
 
