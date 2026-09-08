@@ -1,6 +1,6 @@
 ---
 title: 接入第三方
-description: 将 WorkBuddy、DeepSeek Harness、codex、Claude Code、Cursor、OpenClaw、OpenCode 等客户端接入 1Panel AI 网关。
+description: 将 WorkBuddy、DeepSeek Harness、codex、Claude Code、Cursor、OpenClaw、OpenCode、Hermes Agent 等客户端接入 1Panel AI 网关。
 slug: /ai-gateway/integrate-third-party
 ---
 
@@ -569,10 +569,186 @@ npm install @ai-sdk/openai-compatible
 
 <img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image40_opencode_test_chat_success.png" alt="opencode 测试对话"/>
 
-<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}><div className="fig-cap" style={{textAlign:"center",color:#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40  OpenCode 测试对话成功</div>
 
 
-## 9 常见问题排查（FAQ）
+## 9 接入 Hermes Agent
+
+Hermes Agent 是 Nous Research 开源的个人 AI 代理，支持本地代码执行、文件读写、浏览器自动化、消息平台收发等能力。Windows 推荐使用 PowerShell 一键安装脚本，其他系统可参考官方文档。
+
+- **官方仓库**：https://github.com/NousResearch/hermes-agent
+
+### 9.1 下载并安装（启动 Setup Wizard）
+
+打开 PowerShell，执行以下命令一键安装（首次执行可能需要数秒到数分钟，取决于网络环境）：
+
+```powershell
+irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1 | iex
+```
+
+安装脚本会自动下载并配置 uv、Node.js、Git for Windows、ripgrep、ffmpeg 等依赖。终端会按顺序打印每一步的执行结果。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image41_hermes_install_command.png" alt="执行安装命令"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 41  在 PowerShell 中执行一键安装命令</div>
+
+:::note[温馨提示]
+
+安装过程中会自动调用 Chocolatey / winget / Git for Windows 等系统组件，首次执行可能需要授予管理员权限。若终端提示"无法访问 GitHub 原始仓库"，请确认电脑可访问 `raw.githubusercontent.com`，或按官方文档改用本地源码安装。
+
+:::
+
+依赖安装完成后，终端会自动进入 Hermes Agent Setup Wizard。如果之前安装过 OpenClaw，向导会先询问是否把 OpenClaw 的配置、记忆与技能迁移过来。本教程不需要迁移，保持默认或输入 `2` 跳过迁移即可。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image42_hermes_setup_wizard_openclaw_detected.png" alt="启动配置向导"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 42  安装完成后进入 Setup Wizard，可选择是否迁移 OpenClaw</div>
+
+随后向导进入 "How would you like to set up Hermes?" 设置模式选择，三个档位分别是 `1 Quick Setup (Nous Portal)`、`2 Full Setup`、`3 Blank Slate`。**接入自建 1Panel AI 网关选 `2 Full Setup`**，按回车进入下一步。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image43_hermes_setup_mode_choice.png" alt="选择安装模式"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 43  选择安装模式（Quick / Full / Blank Slate）</div>
+
+### 9.2 接入 1Panel AI 网关（配置自定义 endpoint）
+
+向导会列出近 40 个常见 AI 服务（OpenAI、Anthropic、xAI Grok、DeepSeek、OpenRouter 等）。1Panel AI 网关是"OpenAI 兼容"的私部署服务，需要选择列表最下方的 `40. Custom endpoint (enter URL manually)`。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image44_hermes_select_custom_endpoint.png" alt="选择自定义 endpoint"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 44  在 Provider 列表中选择 Custom endpoint</div>
+
+进入 Custom OpenAI-compatible endpoint configuration 配置页，依次填写两项：
+
+- **API base URL**：填入 1Panel AI 网关的接口地址 `https://1router.1panel.cn/v1`（末尾 `/v1` 不可省略；私部署环境以管理员提供为准）
+- **API key**：粘贴第 1 步在 1Panel AI 网关管理端创建的 API Key
+
+填写后终端可能给出一行告警："could not verify this endpoint via https://1router.1panel.cn/v1/models"——这是预期现象（部分网关的 `/v1/models` 路径不可用），不影响后续使用，继续往下走即可。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image45_hermes_fill_baseurl_apikey.png" alt="配置 API base URL 与 API Key"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 45  填入 API base URL 与 API Key</div>
+
+接下来选择 API compatibility mode（API 兼容模式）。1Panel AI 网关对外提供标准 OpenAI 兼容接口，保持默认 `1. Auto-detect`（自动检测）即可。
+
+随后在接下来的提示中依次填入：
+
+- **Model name**：网关开通的模型标识（如 `deepseek-v4-flash`），需与模型广场展示的名称一字不差
+- **Context length in tokens**：上下文长度（tokens），按需填入（如 `128000`）；留空则使用模型默认值
+
+填完后向导会显示 "API key saved to .env as HERMES_CUSTOM_1ROUTER_1PANEL_CN_API_KEY" 以及 "Saved to custom providers as 'deepseek-v4-flash'"，表示配置已写入 `~/.config/hermes/env` 与 `config.yaml`。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image46_hermes_select_mode_model_context.png" alt="选择 API 兼容模式与模型配置"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 46  选择 API 兼容模式，填入模型名称与上下文长度</div>
+
+### 9.3 配置 Terminal / 平台 / 自启（可全部跳过）
+
+接下来依次确认三项基础设施设置，本教程保持全部默认或跳过即可：
+
+**Terminal Backend（终端后端）**：用于决定 Hermes 在哪台环境执行 shell 命令与代码。本教程使用本机直接执行，保持默认 `7. Keep current (local)`，按回车跳过即可。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image47_hermes_select_terminal_backend.png" alt="选择 Terminal Backend"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 47  Terminal Backend 默认 Local</div>
+
+**Platform 选择（27 个即时通讯平台）**：包括 Telegram、Discord、Slack、微信、飞书、邮件等。本教程不绑定任何第三方平台，保持全空状态按回车确认即可。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image48_hermes_select_platforms.png" alt="平台选择"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 48  Platform 默认全部跳过</div>
+
+**立即启动与 Windows 登录自启**：依次问两个开关——`Start the gateway now after install?` 保持默认 `1 Yes`；`Start the gateway automatically on Windows login with a Scheduled Task?` 本教程不需要开机自启，选择 `2 No`。终端输出 "Gateway service installed and started" 即表示后台服务已注册完成。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image49_hermes_skip_gateway_autostart.png" alt="跳过立即启动与自启"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 49  跳过立即启动与 Windows 登录自启</div>
+
+### 9.4 配置工具（极简选择 / 大部分跳过）
+
+Hermes Tool Configuration 列出 24 类可选工具（Browser Automation、Computer Use、Image Generation、Text-to-Speech、Vision、Web Search & Scraping 等）。本教程故意保持最简：只启用 Browser Automation 用本机浏览器、TTS 用系统自带，**其余全部选择 `Skip – keep defaults / configure later` 跳过即可**。
+
+工具总览页面直接按回车确认全部跳过，向导随后会逐项让你选择每个工具的具体实现。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image50_hermes_select_tools.png" alt="工具选择"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 50  工具总览默认全部跳过</div>
+
+逐项选择时按下表即可：
+
+| 工具项 | 推荐选择 | 说明 |
+| --- | --- | --- |
+| Browser Automation | `1. Local Browser` | 本机 Headless Chromium，无需 API Key |
+| Image Generation | `Skip – keep defaults / configure later` | 本教程不演示生图 |
+| Text-to-Speech | `1. Microsoft Edge TTS` | 系统自带、质量好、无需 API Key |
+| Web Search & Extract | `Skip – keep defaults / configure later` | Hermes 自带免费 DuckDuckGo 搜索技能，足够日常使用 |
+
+分别对应下面四张截图，依次按回车确认即可完成。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image51_hermes_browser_provider_choice.png" alt="选择 Browser Automation"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 51  Browser Automation 选择 Local Browser</div>
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image52_hermes_image_generation_skip.png" alt="跳过 Image Generation"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 52  Image Generation 选择跳过</div>
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image53_hermes_tts_choice.png" alt="选择 Text-to-Speech"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 53  Text-to-Speech 选择 Microsoft Edge TTS</div>
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image54_hermes_search_provider_skip.png" alt="跳过 Web Search & Extract"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 54  Web Search & Extract 选择跳过，配置完成</div>
+
+向导最后一行会显示 "Previous config backed up to: …\\config.yaml.bak.…"，表示旧的配置文件已自动备份，本次配置已写入 `~/.config/hermes/config.yaml`。
+
+:::note[温馨提示]
+
+以上所有选择都可以之后再通过 `hermes setup` / `hermes config` 命令重新打开修改。本教程刻意保持最简配置，避免无关工具干扰接入验证。
+
+:::
+
+### 9.5 运行 hermes doctor 自检
+
+向导结束后，可以运行 Hermes 提供的自检命令，确认依赖、配置、SSL 等都处于健康状态：
+
+```bash
+hermes doctor
+```
+
+终端会依次打印 Security Advisories、MCP Server Security、Python Environment、SSL / CA Certificates、Required Packages、Configuration Files 等模块的检查结果，全部显示绿色 `✓` 即表示环境就绪。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image55_hermes_doctor_check.png" alt="运行 hermes doctor 自检"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 55  运行 hermes doctor 检查环境健康度</div>
+
+### 9.6 启动 Hermes Agent 主界面
+
+自检通过后，在终端输入 `hermes` 即可启动 Hermes Agent：
+
+```bash
+hermes
+```
+
+启动后会进入 ASCII 风格的主界面：顶部显示 `HERMES-AGENT` 标题与版本号 `Hermes Agent v0.21.1 (2026.9.7)`，中间区域依次列出 Available Tools（20 个工具，如 `browser-use`、`code_execution`、`image_generate`）和 Available Skills（54 个技能，如 `claude-code`、`codex`、`computer-use`），底部显示当前工作目录、Session ID 与已配置模型 `deepseek-v4-flash · Nous Research`，表示配置已生效。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image56_hermes_main_interface.png" alt="Hermes Agent 主界面"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 56  启动 hermes 后进入主界面</div>
+
+### 9.7 发起测试对话
+
+在主界面下方的输入框中输入一条简单消息（如 `hello`），回车发送。片刻后 Hermes 会调用 1Panel AI 网关（`https://1router.1panel.cn/v1`）取得回复，并在输入框上方显示模型回复（如 `Hello! Ready to help with anything in the hermes-agent codebase or elsewhere. What are we working on?`）。
+
+底部状态栏会显示当前所用模型与上下文占用（如 `deepseek-v4-flash | 21.7K/128K | 17%`）。若能正常收到模型回复，说明 Hermes Agent → 1Panel AI 网关 → 上游模型的链路已经打通。
+
+<img className="caption-src" style={{display:"block",margin:"16px auto",maxWidth:"100%"}} src="/img/quick_deployment/image57_hermes_test_chat.png" alt="Hermes Agent 测试对话"/>
+
+<div className="fig-cap" style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 57  Hermes Agent 通过 1Panel AI 网关测试对话成功</div>
+
+
+## 10 常见问题排查（FAQ）
 
 配置完成后测试如果不通，按下面的对照表排查，基本都能解决：
 
@@ -584,3 +760,5 @@ npm install @ai-sdk/openai-compatible
 | 能连通但没有回复 / 模型列表为空           | 该模型未分配给你的账号                                              | 联系管理员确认模型已加入你的用户组                               |
 | Claude Code 报错连不上 / 走的是官方接口 | CC Switch 供应商未启用，或上游格式未选「OpenAI Chat Completions（需开启路由）」 | 回到 CC Switch 确认网关供应商处于「启用」状态，并在高级选项中检查上游格式与模型映射 |
 | OpenCode 启动后状态栏未显示网关         | opencode.json 路径不对、SDK 未安装成功或 JSON 语法错误                  | 确认文件位于 `~/.config/opencode/opencode.json`；在该目录下重新执行 `npm install @ai-sdk/openai-compatible`；用 JSON 校验工具检查语法 |
+| Hermes Agent 启动后模型未调用 / 报 401 / 报错连不上网关 | Custom endpoint 配置未生效、API base URL 末尾漏写 `/v1`、API Key 复制错误 | 重新执行 `hermes setup`，在 Provider 列表选 `40 Custom endpoint`；确认 `~/.config/hermes/env` 里 `HERMES_CUSTOM_1ROUTER_1PANEL_CN_API_KEY` 已正确写入，Base URL 以 `/v1` 结尾；之后 `hermes doctor` 自检应全部 `✓` |
+| Hermes Gateway 自启失败 / Windows 登录后无服务 | 安装时勾选了 "Start automatically on Windows login" 但权限不足，或计划任务被清理 | 重新执行 `hermes setup gateway`，按提示选择「是」注册 Scheduled Task；或手动在「任务计划程序」里查看 `HermesGateway` 任务是否还在 |
