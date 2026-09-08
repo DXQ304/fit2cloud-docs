@@ -328,7 +328,7 @@ DeepSeek 账号的配置方式如下图所示。
 
 <FigCap style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23 智谱配置样例配置样例</FigCap>
 
-### 3.10 对接MiniMax（中国）
+### 3.10 对接MiniMax
 
 **步骤1 添加账号**
 
