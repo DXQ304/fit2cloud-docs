@@ -249,7 +249,33 @@ DeepSeek 账号的配置方式如下图所示。
 
 <div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 17 百度千帆配置样例</div>
 
-### 3.7 对接火山引擎方舟
+### 3.7  对接硅基流动
+
+**步骤1 添加账号**
+
+添加硅基流动模型之前，需要先在硅基流动平台注册登录并获取 API Key，用于后续填写在网关账号的访问凭据中。
+
+- **供应商**：选择 `硅基流动`。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `硅基流动向量模型`。
+- **API Key**：填写硅基流动平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-embeddings`。
+- **模型映射**：选择供应商后自动列出可用模型，如对应的 embedding 模型。
+- **测试模型**：选择一个模型用于保存时验证，如对应的 embedding 模型。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image18_obtain_siliconflow_api_key.png" alt="获取硅基流动 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18 获取硅基流动 API Key</div>
+
+**步骤2 配置样例**
+
+硅基流动的向量模型配置方式如下图所示。文本模型、文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image19_siliconflow_configuration_example.png" alt="硅基流动配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19 硅基流动配置样例</div>
+
+### 3.8 对接火山引擎方舟
 
 **步骤1 添加账号**
 
@@ -264,19 +290,19 @@ DeepSeek 账号的配置方式如下图所示。
 - **模型映射**：选择供应商后自动列出可用模型，或可点击 **发现模型** 拉取平台已接入的模型列表快速补全，如 `doubao-seed-2.0-code → doubao-seed-2.0-code`。
 - **测试模型**：选择一个模型用于保存时验证，如 `ark-code-latest`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image18_obtain_volcengine_ark_api_key.png" alt="获取火山引擎方舟 API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image20_obtain_volcengine_ark_api_key.png" alt="获取火山引擎方舟 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 18 获取火山引擎方舟 API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20 获取火山引擎方舟 API Key</div>
 
 **步骤2 配置样例**
 
 火山引擎方舟的 Coding Plan 账号配置方式如下图所示，其余账号类型配置方式一致。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image19_volcengine_ark_configuration_example.png" alt="火山引擎方舟配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image21_volcengine_ark_configuration_example.png" alt="火山引擎方舟配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 19 火山引擎方舟配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21 火山引擎方舟配置样例</div>
 
-### 3.8 对接智谱 Z.ai
+### 3.9 对接智谱 Z.ai
 
 **步骤1 添加账号**
 
@@ -290,19 +316,72 @@ DeepSeek 账号的配置方式如下图所示。
 - **模型映射**：选择供应商后自动列出可用模型，如 `glm-5.1 → glm-5.1`；需添加模型时可点击 **+ 添加**。
 - **测试模型**：选择一个模型用于保存时验证，如 `glm-5.1`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image20_obtain_zhipu_ai_api_key.png" alt="获取智谱 API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image22_obtain_zhipu_ai_api_key.png" alt="获取智谱 API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 20 获取智谱 API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22 获取智谱 API Key</div>
 
 **步骤2 配置样例**
 
 智谱 Z.ai 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image21_zhipu_ai_configuration_example.png" alt="智谱配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image23_zhipu_ai_configuration_example.png" alt="智谱配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 21 智谱配置样例配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23 智谱配置样例配置样例</div>
 
-### 3.9 对接 Kimi
+### 3.10 对接MiniMax（中国）
+
+**步骤1 添加账号**
+
+添加 MiniMax 模型之前，需要先在 MiniMax 开放平台注册登录并获取 API Key，用于后续填写在网关账号的访问凭据中。
+
+- **供应商**：选择 ` MiniMax（中国）`。
+- **协议类型**： 文本 / 文生图  。
+- **名称**：设置账号显示名称，如 `MiniMax 文本模型`
+- **API Key**：填写 MiniMax 开放平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `MiniMax-M3 → MiniMax-M3`；需添加模型时可点击 **添加**。
+- **测试模型**：选择一个模型用于保存时验证，如 `MiniMax-M3`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image24_obtain_minimax_api_key.png" alt="获取 MiniMax API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 24 获取 MiniMax API Key</div>
+
+**步骤2 配置样例**
+
+MiniMax 文本模型配置方式如下图所示。文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image25_minimax_configuration_example.png" alt=" MiniMax 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 25 MiniMax 配置样例</div>
+
+### 3.11 对接小米
+
+**步骤1 添加账号**
+
+添加 Kimi 模型之前，需要先在 [Moonshot AI 开放平台](https://platform.moonshot.cn/console/account) 中注册并创建 API Key。
+
+- **供应商**：选择 ` 小米`。
+- **账号类型**： Token Plan / 按量付费 。
+- **名称**：设置账号显示名称，如 `小米模型`。
+- **服务地址**：选择供应商后自动填写，如 `https://token-plan-cn.xiaomimimo.com`。
+- **API Key**：填写小米开放平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `mimo-v2.5 → mimo-v2.5`；需添加模型时可点击 **+ 添加**。
+- **测试模型**：选择一个模型用于保存时验证，如 `mimo-v2.5`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image26_obtain_xiaomi_mimo_api_key.png" alt="获取小米 API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 26 获取小米 API Key</div>
+
+**步骤2 配置样例**
+
+Kimi 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image27_xiaomi_mimo_configuration_example.png" alt=" 小米配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 27 小米配置样例</div>
+
+### 3.12 对接 Kimi
 
 **步骤1 添加账号**
 
@@ -316,17 +395,166 @@ DeepSeek 账号的配置方式如下图所示。
 - **模型映射**：选择供应商后自动列出可用模型，如 `k3-256k → k3-256k`；需添加模型时可点击 **+ 添加**。
 - **测试模型**：选择一个模型用于保存时验证，如 `k3-256k`。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image22_obtain_kimi_api_key.png" alt="获取 Kimi API Key"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image28_obtain_kimi_api_key.png" alt="获取 Kimi API Key"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 22 获取 Kimi API Key</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 28 获取 Kimi API Key</div>
 
 **步骤2 配置样例**
 
 Kimi 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
 
-<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image23_kimi_configuration_example.png" alt=" Kimi 配置样例"/>
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image29_kimi_configuration_example.png" alt=" Kimi 配置样例"/>
 
-<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 23 Kimi 配置样例</div>
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 29 Kimi 配置样例</div>
+
+### 3.12 对接 OpenCode
+
+**步骤1 添加账号**
+
+添加 OpenCode 模型之前，需要先在 OpenCode 开放平台中注册并创建 API Key。
+
+- **供应商**：选择 ` OpenCode`。
+- **账号类型**：Go（订阅计划）/ Zen（按量付费）
+- **名称**：设置账号显示名称，如 `OpenCode 文本模型`
+- **API Key**：填写 OpenCode 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `zen-default → zen-default`；可点击 **发现模型** 拉取已接入的模型列表快速补全。
+- **测试模型**：选择一个模型用于保存时验证，如 `zen-default`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image30_obtain_opencode_api_key.png" alt="获取 OpenCode API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 30 获取 OpenCode API Key</div>
+
+**步骤2 配置样例**
+
+OpenCode 的 Zen（按量付费）账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image31_opencode_configuration_example.png" alt=" OpenCode 配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 31 OpenCode 配置样例</div>
+
+### 3.13 对接 OpenAI
+
+**步骤1 添加账号**
+
+添加  OpenAI 模型之前，需要先在  OpenAI 开放平台中注册并创建 API Key。
+
+- **供应商**：选择 ` OpenAI`。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `OpenAI 文本模型`。
+- **API Key**：填写 OpenAI 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `gpt-5.6-sol → gpt-5.6-sol`；需添加模型时可点击 **+ 添加**。
+- **测试模型**：选择一个模型用于保存时验证，如 `gpt-5.6-sol`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image32_obtain_openai_api_key.png" alt="获取 OpenAI API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 32 获取 OpenAI API Key</div>
+
+**步骤2 配置样例**
+
+Kimi 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image33_openai_configuration_example.png" alt=" OpenAI配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 33 OpenAI 配置样例</div>
+
+### 3.14 对接 OpenRouter
+
+**步骤1 添加账号**
+
+添加 OpenRouter 模型之前，需要先在 OpenRouter 开放平台中注册并创建 API Key。
+
+- **供应商**：选择 ` OpenRouter`。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `OpenRouter 文本模型`。
+- **API Key**：填写 OpenRouter 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `openai-completions`、`openai-responses`、`anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `openrouter/free → openrouter/free`。
+- **测试模型**：选择一个模型用于保存时验证，如 `openrouter/free`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image34_obtain_openrouter_api_key.png" alt="获取 OpenRouter API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 34 获取 OpenRouter API Key</div>
+
+**步骤2 配置样例**
+
+OpenRouter 文本模型配置方式如下图所示。文本模型、文生图模型可参照同样的方法完成配置。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image35_openrouter__configuration_example.png" alt=" OpenRouter配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 35 OpenRouter 配置样例</div>
+
+### 3.15 对接 Anthropic
+
+**步骤1 添加账号**
+
+添加 Anthropic 模型之前，需要先在 Anthropic 开放平台中注册并创建 API Key。
+
+- **供应商**：选择 ` Anthropic`。
+- **名称**：设置账号显示名称，如 `Anthropic`。
+- **API Key**：填写 Anthropic 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `anthropic-messages`。
+- **模型映射**：选择供应商后自动列出可用模型，如对应的 Claude 模型。
+- **测试模型**：选择一个模型用于保存时验证，如 `claude-opus-5`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image36_obtain_anthropic_api_key.png" alt="获取 Anthropic API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 36 获取 Anthropic API Key</div>
+
+**步骤2 配置样例**
+
+Anthropic的账号配置方式如下图所示。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image37_anthropic_configuration_example.png" alt=" Anthropic配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 37 Anthropic 配置样例</div>
+
+### 3.16 对接 Gemini
+
+**步骤1 添加账号**
+
+添加 Gemini 模型之前，需要先在 Gemini 开放平台中注册并创建 API Key。
+
+- **供应商**：选择 ` Gemini`。
+- **名称**：设置账号显示名称，如 `Gemini`
+- **API Key**：填写 Gemini API 平台创建的访问密钥。
+- **支持协议**：显示系统支持的协议格式，如 `gemini-generate-content`、`openai-completions`。
+- **模型映射**：选择供应商后自动列出可用模型，如 `gemini-3.7-flash → gemini-3.7-flash`。
+- **测试模型**：选择一个模型用于保存时验证，如 `gemini-3.7-flash`。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image38_obtain_gemini_api_key.png" alt="获取 Gemini API Key"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 38 获取 Gemini API Key</div>
+
+**步骤2 配置样例**
+
+Gemini账号配置方式如下图所示。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image39_gemini_configuration_example.png" alt=" Gemini配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 39 Gemini 配置样例</div>
+
+### 3.17 对接自定义供应商
+
+**步骤1 添加账号**
+
+- **供应商**：选择 ` 自定义`。
+- **协议类型**： 文本 / 文生图 / 向量。
+- **名称**：设置账号显示名称，如 `f2c-qwen3.8-flash-next`。
+- **服务地址**：填写自定义服务的访问地址。
+- **API Key**：填写该服务要求的访问密钥。
+- **协议配置**：为每个支持协议设置对应路径与认证头。路径拼接在服务地址之后，协议固定，请勿随意修改路径。
+- **模型映射**：填请求模型名称与上游模型名称，可点击 **发现模型** 拉取；本例如 `f2c-auto → f2c-auto`。
+- **测试模型**：选择一个模型用于保存时验证。
+
+**步骤2 配置样例**
+
+Kimi 中国区 Token Plan 的账号配置方式如下图所示，其余账号类型配置方式一致。
+
+<img style={{display:"block",margin:"16px auto",maxWidth:"100%"}}  src="/img/account_pool/image40_custom_configuration_example.png" alt=" 自定义配置样例"/>
+
+<div style={{textAlign:"center",color:"#8a8f99",fontSize:"13px",margin:"6px 0 20px"}}>图 40 自定义配置样例</div>
 
 ## 4 注意事项
 
