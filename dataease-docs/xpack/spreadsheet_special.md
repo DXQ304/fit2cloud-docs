@@ -98,7 +98,7 @@ title: 电子表格特殊功能
 - 渲染区域受保护；
 - 支持行列冻结。
 :::
-<img alt="插入透视表" src="/img/dataease/newimg/xpack/插入数据对象2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+<img alt="插入透视表" src="/img/dataease/newimg/xpack/插入透视表.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
 
 :::note
 

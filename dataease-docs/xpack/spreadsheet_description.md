@@ -84,6 +84,7 @@ title: 电子表格概述
 :::
 <img alt="电子表格模块" src="/img/dataease/newimg/xpack/插入数据对象1.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
 <img alt="电子表格模块" src="/img/dataease/newimg/xpack/插入数据对象2.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
+<img alt="电子表格模块" src="/img/dataease/newimg/xpack/插入透视表.png" width="900" style={{maxWidth:'100%', height:'auto'}}/>
 
 :::note
 
